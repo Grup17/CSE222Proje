@@ -1,4 +1,4 @@
-package com.gtu.ozturk.cse22proje;
+package com.gtu.secpisir.secpisir;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.gtu.ozturk.cse22proje", appContext.getPackageName());
+        assertEquals("com.gtu.secpisir.secpisir", appContext.getPackageName());
     }
 }
