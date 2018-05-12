@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.gtu.ozturk.cse22proje">
+    package="com.secpisir.secpisir">
 
+    <!-- To auto-complete the email text field in the login form with the user's emails -->
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +20,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".LoginActivity">
+        </activity>
+        <activity android:name=".MenuTest" />
+        <activity android:name=".KayitActivity" />
+        <activity android:name=".MainScreen" />
+        <activity android:name=".MenuYoneticisi" />
+        <activity android:name=".favoriler" />
+        <activity android:name=".karaliste" />
+        <activity android:name=".IngredientActivity"
+            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".FerhatMain" />
+        <activity android:name=".YemekTarifi"></activity>
+        <activity android:name=".KategorilerActivity"></activity>
     </application>
 
 </manifest>

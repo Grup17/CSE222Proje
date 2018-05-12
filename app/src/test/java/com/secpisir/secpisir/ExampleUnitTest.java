@@ -1,4 +1,4 @@
-package com.gtu.ozturk.cse22proje;
+package com.secpisir.secpisir;
 
 import org.junit.Test;
 
