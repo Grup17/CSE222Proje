@@ -1,4 +1,4 @@
-package com.gtu.secpisir.secpisir;
+package com.secpisir.secpisir;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -19,7 +19,7 @@ public class favoriler extends AppCompatActivity implements favoriler_fragment.O
         //TODO: kullanıcı sınıfından karaliste datafieldì ile işlemi yap
         denemeFavoriListesi deneme=new denemeFavoriListesi();
         final favoriler cntx = this;
-        final LinearLayout linearly =(LinearLayout) findViewById(R.id.linearLayout_favoriler);
+        final LinearLayout linearly = findViewById(R.id.linearLayout_favoriler);
         //frame layout oluşturuldu
         for (int i=0;i<deneme.getDeneme_favori().size();++i)
         {
