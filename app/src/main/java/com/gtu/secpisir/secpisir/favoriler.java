@@ -1,4 +1,4 @@
-package com.secpisir.secpisir;
+package com.gtu.secpisir.secpisir;
 
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
