@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/proje_arkaplan">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="210dp"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Bu Günün Önerisi"
+        android:textColor="@android:color/black"
+        android:textSize="26sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="148dp"
+        android:layout_height="122dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        app:srcCompat="@drawable/yemek" />
+
+    <LinearLayout
+        android:layout_width="354dp"
+        android:layout_height="260dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="211dp"
+        android:orientation="vertical">
+
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:id="@+id/textView3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Soğanı küp küp küçük kesip yağımızda pembeleşinceye kadar kavuruyoruz. Ardından iç fıstığımızı ekleyip onuda kavuruyoruz. Yıkadığımız pirinçleri harca ekleyip tekrardan kavuruyoruz. Pirinçlerle aynı boyuta gelecek kadar sıcak suyumuzu koyup, tuzumuzu, karabiberimizi ve kuş üzümünü koyup;kısık ateşte kapağını kapatıp suyunu çekene kadar pişiriyoruz. Pişen pirinçlere nane ve maydanozu ekliyoruz. (maydanozlar ince ince kesilecek) Ardından önceden haşladığımız üzüm yapraklarına harcı koyup tek tek sarıp tenceremize diziyoruz. Ben dizmeden önce tencerenin dibini üzüm yaprağıyla kaplıyıp öyle dizmeye başlıyorum. Harç bitene kadar sarma işlemine devam ediyoruz. Sarmalarımızı kısık ateşe koymadan önce, bir su bardağı kaynamış su ve yarım su bardağı zeytin yağımızı ekleyip pişiriyoruz. (ben tencerenin dibine serdiğim yapraklardan dizme işlemi bittikten sonrada üstünü kapatacak şekilde seriyorum) Pişen dolmamızı 10 dakika kapağı kapalı tencerede dinlendirip, servise hazır ediyoruz. afiyetler olsun"
+                android:textSize="22sp"
+                android:textColor="@android:color/black"/>
+        </ScrollView>
+
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginBottom="23dp"
+        android:layout_marginEnd="25dp"
+        android:text="TAMAM" />
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="83dp"
+        android:layout_height="50dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignTop="@+id/button"
+        android:layout_marginEnd="265dp"
+        android:background="@drawable/carpi"
+        tools:layout_height="50dp"
+        tools:layout_width="50dp" />
+
+    <Button
+        android:id="@+id/button4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignBottom="@+id/button"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="175dp"
+        android:background="@drawable/kalpp" />
+
+</RelativeLayout>
