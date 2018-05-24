@@ -1,3 +1,4 @@
+package com.secpisir.secpisir;
 import android.util.Pair;
 
 import java.util.ArrayList;
@@ -10,7 +11,7 @@ class YönetimSistemi {
     private IkiliAramaAgaci<Pair<Kullanıcı,String>> kullanıcılar;
     private Stack<Yemek> EklenenYemekler;
     private Stack<Icecek> EklenenIcecekler;
-    private ArrayList<ArrayList<Yemek>> MalzemedenYemekler;
+    private ArrayList<Yemek> yemekler;
     private ArrayList<ArrayList<Icecek>> MalzemedenIcecekler;
     private PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
     private LinkedList<String> LinkedList;
@@ -53,13 +54,8 @@ class YönetimSistemi {
 
     }
 */
-
-
-
-
-
-
-
-
-
+    public int calculateWeightBetweenConsumables(Tüketilebilir source, Tüketilebilir destination){
+        //TODO: very simple. just a for inside for, count the common ingredient number and return it
+        return 0;
+    }
 }

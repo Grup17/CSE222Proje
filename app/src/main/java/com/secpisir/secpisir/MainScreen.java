@@ -15,7 +15,7 @@ public class MainScreen extends AppCompatActivity {
         setContentView(R.layout.activity_mainscreen);
     }
 
-    public void menudenKaralisteye(MenuItem item){
+    public void menudenKaralisteye(MenuItem item) {
         Intent intent = new Intent(this, karaliste.class);
         startActivity(intent);
     }
@@ -25,14 +25,18 @@ public class MainScreen extends AppCompatActivity {
         startActivity(intent);
     }
 
-    public void anaEkrandanAramaya(View view){
-        Log.i("TAG","deneme");
+    public void anaEkrandanAramaya(View view) {
+        Log.i("TAG", "deneme");
         Intent intent = new Intent(this, IngredientActivity.class);
         startActivity(intent);
     }
 
-    public void anaEkrandanKategorilere(View view){
+    public void anaEkrandanKategorilere(View view) {
         Intent intent = new Intent(this, KategorilerActivity.class);
         startActivity(intent);
+    }
+
+    public void anaEkrandanRastgeleye(View view) {
+        setContentView(R.layout.rastgele);
     }
 }

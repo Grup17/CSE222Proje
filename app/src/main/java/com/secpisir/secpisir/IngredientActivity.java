@@ -19,6 +19,7 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.FrameLayout;
@@ -57,8 +58,8 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_ingredient);
 
-        searchIngredient = (ListView) findViewById(R.id.search_ingredient_list);
-        searchView = (SearchView) findViewById(R.id.search_actionbar);
+        searchIngredient = findViewById(R.id.search_ingredient_list);
+        searchView = findViewById(R.id.search_actionbar);
 
         ArrayList<String> ingredientArray = new ArrayList<>();
         ingredientArray.addAll(Arrays.asList(getResources().getStringArray(R.array.dummy_ingredients)));
@@ -81,12 +82,13 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
         final SearchView searchView = (SearchView) item.getActionView();
 
         final IngredientActivity cntx = this;
-        final LinearLayout linearly = (LinearLayout) findViewById(R.id.basket_linear_layout);
+        final LinearLayout linearly = findViewById(R.id.basket_linear_layout);
 
         searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
 
             @Override
             public boolean onSuggestionSelect(int position) {
+                searchView.setVisibility(View.GONE);
                 return false;
             }
 
@@ -111,8 +113,6 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
                 tempLay.setId(id);
                 linearly.addView(tempLay);
                 addFragment(id, query);
-
-
                 return false;
             }
 
@@ -150,7 +150,20 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
             }
         });
 
-
+        searchIngredient.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position,
+                                    long id) {
+                Object entry=  parent.getAdapter().getItem(position);
+                searchIngredient.setVisibility(View.GONE);
+                FrameLayout tempLay = new FrameLayout(cntx);
+                int idNew = View.generateViewId();
+                tempLay.setId(idNew);
+                linearly.addView(tempLay);
+                addFragment(idNew, entry.toString());
+                searchIngredient.setVisibility(View.GONE);
+            }
+        });
         return super.onCreateOptionsMenu(menu);
     }
 

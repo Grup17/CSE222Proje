@@ -1,4 +1,5 @@
-package com.secpisir.secpisir
+package com.secpisir.secpisir;
+
 public class Malzeme {
     private String isim;
     private int kod;

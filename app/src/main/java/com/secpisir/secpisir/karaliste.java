@@ -17,17 +17,17 @@ public class karaliste extends AppCompatActivity implements karaliste_fragment.O
         setContentView(R.layout.activity_karaliste);
 
         //TODO: kullanıcı sınıfından karaliste datafieldì ile işlemi yap
-        denemeFavoriListesi deneme=new denemeFavoriListesi();
+        DenemeListesi deneme=new DenemeListesi();
         final karaliste cntx = this;
-        final LinearLayout linearly =(LinearLayout) findViewById(R.id.linearLayout_karaliste);
+        final LinearLayout linearly = findViewById(R.id.linearLayout_karaliste);
         //frame layout oluşturuldu
-        for (int i=0;i<deneme.getDeneme_favori().size();++i)
+        for (int i=0;i<deneme.getDeneme_liste().size();++i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
             flTest.setId(id);
             linearly.addView(flTest);
-            addFragment(id,deneme.getDeneme_favori().get(i));
+            addFragment(id,deneme.getDeneme_liste().get(i));
         }
     }
 

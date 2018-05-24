@@ -1,3 +1,5 @@
+package com.secpisir.secpisir;
+
 public class Menu {
 
     private Yemek yemek;

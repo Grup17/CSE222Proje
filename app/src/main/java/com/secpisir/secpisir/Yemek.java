@@ -1,8 +1,9 @@
-import java.util.LinkedList;
+package com.secpisir.secpisir;
+import java.util.ArrayList;
 
 public class Yemek extends Tüketilebilir {
 
-    private LinkedList<Malzeme> malzemeler;
+    private ArrayList<Malzeme> malzemeler;
     private Hazırlanıs hazirlanis;
     private String kategori;
     private int hazirlanisSuresi;
@@ -11,7 +12,7 @@ public class Yemek extends Tüketilebilir {
     public Yemek(){
 
     }
-    public Yemek(LinkedList<Malzeme> yeniMalzemeler, String kategori ,Hazırlanıs hazirlanis,int hazirlanisSuresi){
+    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,Hazırlanıs hazirlanis,int hazirlanisSuresi){
 
         malzemeler = yeniMalzemeler;
         this.kategori = kategori;
@@ -20,7 +21,7 @@ public class Yemek extends Tüketilebilir {
 
     }
 
-    public LinkedList<Malzeme> getMalzemeler() {
+    public ArrayList<Malzeme> getMalzemeler() {
         return malzemeler;
     }
 

@@ -15,12 +15,12 @@ public class denemeFavoriListesi {
     private void create()
     {
 
-        deneme_favori.add("batuhan");
-        deneme_favori.add("çağrı");
-        deneme_favori.add("ferhat");
-        deneme_favori.add("osman");
-        deneme_favori.add("sevgi");
-        deneme_favori.add("simge");
+        deneme_favori.add("Ali Nazik");
+        deneme_favori.add("Hünkar Beğendi");
+        deneme_favori.add("Mantı");
+        deneme_favori.add("Enginar");
+        deneme_favori.add("Kıymalı Makarna");
+        deneme_favori.add("Mercimek Çorbası");
     }
     public LinkedList<String> getDeneme_favori(){  return deneme_favori;}
     public int size(){ return deneme_favori.size();}

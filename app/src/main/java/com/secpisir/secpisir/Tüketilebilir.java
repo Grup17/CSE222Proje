@@ -1,3 +1,5 @@
+package com.secpisir.secpisir;
+
 public abstract class Tüketilebilir implements Besin{
 
     protected int Kalori;

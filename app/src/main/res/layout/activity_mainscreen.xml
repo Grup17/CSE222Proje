@@ -38,7 +38,7 @@
         android:id="@+id/button2"
         android:layout_width="245dp"
         android:layout_height="72dp"
-
+        android:onClick="anaEkrandanRastgeleye"
         android:layout_marginTop="16dp"
         android:fontFamily="casual"
         android:text="@string/rastgele"

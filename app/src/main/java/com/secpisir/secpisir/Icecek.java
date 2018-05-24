@@ -1,3 +1,4 @@
+package com.secpisir.secpisir;
 import java.util.LinkedList;
 
 public class Icecek extends Tüketilebilir{

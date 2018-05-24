@@ -4,7 +4,7 @@
     tools:context=".MenuYoneticisi">
     <item
         android:id="@+id/nav_item"
-        android:icon="@mipmap/ic_launcher_round"
+        android:icon="@mipmap/ic_launcher"
         android:title="@string/favoriler"
         android:onClick="menudenFavorilere"/>
 

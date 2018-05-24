@@ -1,3 +1,5 @@
+package com.secpisir.secpisir;
+
 public interface SearchTree<E> {
 
     boolean add(E item);

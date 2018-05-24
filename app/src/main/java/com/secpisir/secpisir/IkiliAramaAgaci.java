@@ -1,6 +1,10 @@
+package com.secpisir.secpisir;
+
 import java.io.Serializable;
 
-public class IkiliAramaAgaci<E> implements SearchTree<E> {
+public class IkiliAramaAgaci<E> implements SearchTree<E>{
+    Node<E> root;
+
     @Override
     public boolean add(E item) {
         return false;
@@ -13,7 +17,8 @@ public class IkiliAramaAgaci<E> implements SearchTree<E> {
 
     @Override
     public E find(E target) {
-        return find(root,target);
+        //return find(root,target);
+        return null;
     }
 
 
