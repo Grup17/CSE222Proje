@@ -3,14 +3,8 @@ package com.secpisir.secpisir;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Debug;
 import android.support.design.widget.NavigationView;
-import android.support.v4.widget.DrawerLayout;
-import android.util.Log;
-import android.view.Menu;
 import android.view.MenuItem;
-
-import java.util.Scanner;
 
 public class MenuTest extends Activity {
 
@@ -45,12 +39,18 @@ public class MenuTest extends Activity {
     }
 
     public void menudenKaralisteye(MenuItem item){
-        Intent intent = new Intent(this, karaliste.class);
+        Intent intent = new Intent(this, Karaliste.class);
         startActivity(intent);
     }
 
     public void menudenFavorilere(MenuItem item) {
-        Intent intent = new Intent(this, favoriler.class);
+        Intent intent = new Intent(this, Favoriler.class);
         startActivity(intent);
     }
+
+    public void menudenGecmise(MenuItem item) {
+        Intent intent = new Intent(this, Gecmis.class);
+        startActivity(intent);
+    }
+
 }

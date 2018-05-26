@@ -16,12 +16,17 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void menudenKaralisteye(MenuItem item) {
-        Intent intent = new Intent(this, karaliste.class);
+        Intent intent = new Intent(this, Karaliste.class);
         startActivity(intent);
     }
 
     public void menudenFavorilere(MenuItem item) {
-        Intent intent = new Intent(this, favoriler.class);
+        Intent intent = new Intent(this, Favoriler.class);
+        startActivity(intent);
+    }
+
+    public void menudenGecmise (MenuItem item) {
+        Intent intent = new Intent(this, Gecmis.class);
         startActivity(intent);
     }
 

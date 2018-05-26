@@ -1,8 +1,6 @@
 package com.secpisir.secpisir;
 
-import android.app.Activity;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
@@ -57,12 +55,12 @@ public class LoginActivity extends AppCompatActivity {
     };*/
 
     public void menudenKaralisteye(MenuItem item){
-        Intent intent = new Intent(this, karaliste.class);
+        Intent intent = new Intent(this, Karaliste.class);
         startActivity(intent);
     }
 
     public void menudenFavorilere(MenuItem item) {
-        Intent intent = new Intent(this, favoriler.class);
+        Intent intent = new Intent(this, Favoriler.class);
         startActivity(intent);
     }
 }
