@@ -10,18 +10,19 @@ import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.Map;
 import java.util.PriorityQueue;
+import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
 class YönetimSistemi {
 
-    private Map<String,String> kullaniciAdlari=new HashMap<>();
-    private Map<String,String> kullaniciEmailleri=new HashMap<>();
+    private Map<String,String> kullaniciAdlari = new HashMap<>();
+    private Map<String,String> kullaniciEmailleri = new HashMap<>();
     private Stack<Yemek> EklenenYemekler;
     private Stack<Icecek> EklenenIcecekler;
-    private ArrayList<ArrayList<Yemek>> MalzemedenYemekler;
-    private ArrayList<ArrayList<Icecek>> MalzemedenIcecekler;
+    private ArrayList<Yemek> yemekler;
+    private ArrayList<Icecek> icecekler;
     private PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
     private LinkedList<String> LinkedList;
     private static Set<Kullanici> kullaniciSet=new HashSet<>();
@@ -30,21 +31,30 @@ class YönetimSistemi {
         listedenOku();
     }
 
+    private ArrayList<Yemek> malzemedenYemekOner(ArrayList<Yemek> yemek,ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
 
-    public LinkedList<Yemek> MalzemedenOner(int Tip){
-        /*
-        ///
-         */
-        LinkedList<Yemek> temp = new LinkedList<>();
+        if(malzeme.size() < 1 )
+            throw new IllegalArgumentException("Malzemenin size'ını düzgün gönder");
+        ArrayList<Yemek> temp = new ArrayList<>();
+        for (int i = 0 ;i < yemek.size() ;i ++){
+            if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))){
+                temp.add(yemek.get(i));
+            }
+        }
+
+        malzeme.remove(malzeme.size()-1);
+        if (malzeme.size() == 0)
+            return yemek;
+        malzemedenYemekOner(temp,malzeme);
         return temp;
     }
 
     public Yemek RastgeleOner(){
-        /////
-        Yemek temp = new Yemek();
-        return temp;
-        /////
+        Random random = new Random();
+        int index = random.nextInt(yemekler.size());
+        return yemekler.get(index);
     }
+
     public Boolean girisYap(){
         return true;/////
     }
@@ -124,12 +134,5 @@ class YönetimSistemi {
         filewriter.close();
 
     }
-
-
-
-
-
-
-
 
 }

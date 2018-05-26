@@ -21,6 +21,14 @@ public class Yemek extends Tüketilebilir {
 
     }
 
+    public boolean containsMalzeme(Malzeme malzeme){
+        for (Malzeme malzeme1 : malzemeler) {
+            if(malzeme1.equals(malzeme))
+                return true;
+        }
+        return false;
+    }
+
     public ArrayList<Malzeme> getMalzemeler() {
         return malzemeler;
     }
