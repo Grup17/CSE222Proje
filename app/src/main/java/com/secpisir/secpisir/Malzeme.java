@@ -19,4 +19,7 @@ public class Malzeme {
     public void setKod(int kod) {
         this.kod = kod;
     }
+
+    @Override
+    public String toString() { return isim; }
 }

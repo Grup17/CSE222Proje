@@ -7,12 +7,12 @@ public class Yemek extends Tüketilebilir {
     private String hazirlanis;
     private String kategori;
     private String isim;
-    private int hazirlanisSuresi;
+    private String hazirlanisSuresi;
 
     public Yemek(){
 
     }
-    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,String hazirlanis,int hazirlanisSuresi){
+    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,String hazirlanis,String hazirlanisSuresi){
 
         malzemeler = yeniMalzemeler;
         this.kategori = kategori;
@@ -64,7 +64,7 @@ public class Yemek extends Tüketilebilir {
         this.kategori = kategori;
     }
 
-    public void setTarifSuresi(int hazirlanisSuresi) {
+    public void setTarifSuresi(String hazirlanisSuresi) {
         this.hazirlanisSuresi = hazirlanisSuresi;
     }
 
@@ -78,5 +78,10 @@ public class Yemek extends Tüketilebilir {
 
     public void setKalori(int kalori){
         this.Kalori = kalori;
+    }
+
+    @Override
+    public String toString() {
+        return isim;
     }
 }

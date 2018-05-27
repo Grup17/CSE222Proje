@@ -23,18 +23,23 @@ class YönetimSistemi {
     private static Map<String,String> kullaniciEmailleri = new HashMap<>();
     private static Stack<Yemek> EklenenYemekler;
     private static Stack<Icecek> EklenenIcecekler;
-    private static ArrayList<Yemek> yemekler;
+    private static ArrayList<Yemek> yemekler = new ArrayList<>(100);
     private static ArrayList<Icecek> icecekler;
     private static PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
     private static LinkedList<String> LinkedList;
-    private static Set<Kullanici> kullaniciSet=new HashSet<>();
+    private static Set<Kullanici> kullaniciSet = new HashSet<>();
+    private static MapGraph<Yemek> yemeklerCizgesi = new MapGraph<>();
 
     YönetimSistemi() throws IOException {
         listedenKullanicilariOku();
         yemekler = new ArrayList<>(50);
     }
 
-    private ArrayList<Yemek> malzemedenYemekOner(ArrayList<Yemek> yemek,ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
+    public static ArrayList<Yemek> getYemekler() {
+        return yemekler;
+    }
+
+    private ArrayList<Yemek> malzemedenYemekOner(ArrayList<Yemek> yemek, ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
 
         if(malzeme.size() < 1 )
             throw new IllegalArgumentException("Malzemenin size'ını düzgün gönder");
@@ -105,14 +110,12 @@ class YönetimSistemi {
         return null;
     }
 
-    public
-
-    static void listeyeKullanicilariYaz()throws IOException
+    public static void listeyeKullanicilariYaz()throws IOException
     {
         String COMMA_DELIMITER=";";
         String SEPARATOR="\n";
         String HEADER="İsim;Soyisim;Kullanıcı Adı;Şifre;Email;Favoriler;KaraListe";
-        FileWriter filewriter= new FileWriter("src//main//java//com//gtu//secpisir//secpisir//kullanici.csv");
+        FileWriter filewriter= new FileWriter("src//main//java//com//secpisir//secpisir//kullanici.csv");
 
         filewriter.append(HEADER);
         for (Kullanici kullanici:kullaniciSet)
@@ -140,9 +143,13 @@ class YönetimSistemi {
 
     }
 
-    public void yemekTarifleriniDosyadanOku() throws FileNotFoundException {
-        File file = new File("yemek.csv");
+    public static void yemekTarifleriniDosyadanOku() throws FileNotFoundException {
+        File file = new File("src/main//java//com//secpisir//secpisir//yemek.csv");
         Scanner scanner = new Scanner(file);
+        if(scanner.hasNext())
+            //Skip the csv headings
+            scanner.nextLine();
+
         while(scanner.hasNext()){
             String line = scanner.nextLine();
             Yemek yemek = new Yemek();
@@ -159,9 +166,26 @@ class YönetimSistemi {
             yemek.setKategori(line.split(";")[2]);
             yemek.setKalori(Integer.parseInt(line.split(";")[3]));
             yemek.setTarif(line.split(";")[4]);
-            yemek.setTarifSuresi(Integer.parseInt(line.split(";")[5]));
-
+            yemek.setTarifSuresi(line.split(";")[5]);
+            yemekler.add(yemek);
         }
+        for (Yemek yemek : yemekler) {
+            for (Yemek yemek1 : yemekler) {
+                int ortakMalzemeler = yemeklerinOrtakMalzemeSayisi(yemek, yemek1);
+                yemeklerCizgesi.insert(yemek, yemek1, ortakMalzemeler);
+            }
+        }
+    }
+
+    static int yemeklerinOrtakMalzemeSayisi(Yemek first, Yemek second){
+        int result = 0;
+        for (Malzeme malzeme : first.getMalzemeler()) {
+            for (Malzeme malzeme1 : second.getMalzemeler()) {
+                if(malzeme.equals(malzeme1))
+                    ++result;
+            }
+        }
+        return result;
     }
 
 }
