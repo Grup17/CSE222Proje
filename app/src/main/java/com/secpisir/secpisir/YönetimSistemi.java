@@ -1,6 +1,8 @@
 package com.secpisir.secpisir;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -17,18 +19,19 @@ import java.util.Stack;
 
 class YönetimSistemi {
 
-    private Map<String,String> kullaniciAdlari = new HashMap<>();
-    private Map<String,String> kullaniciEmailleri = new HashMap<>();
-    private Stack<Yemek> EklenenYemekler;
-    private Stack<Icecek> EklenenIcecekler;
-    private ArrayList<Yemek> yemekler;
-    private ArrayList<Icecek> icecekler;
-    private PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
-    private LinkedList<String> LinkedList;
+    private static Map<String,String> kullaniciAdlari = new HashMap<>();
+    private static Map<String,String> kullaniciEmailleri = new HashMap<>();
+    private static Stack<Yemek> EklenenYemekler;
+    private static Stack<Icecek> EklenenIcecekler;
+    private static ArrayList<Yemek> yemekler;
+    private static ArrayList<Icecek> icecekler;
+    private static PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
+    private static LinkedList<String> LinkedList;
     private static Set<Kullanici> kullaniciSet=new HashSet<>();
 
     YönetimSistemi() throws IOException {
-        listedenOku();
+        listedenKullanicilariOku();
+        yemekler = new ArrayList<>(50);
     }
 
     private ArrayList<Yemek> malzemedenYemekOner(ArrayList<Yemek> yemek,ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
@@ -49,22 +52,22 @@ class YönetimSistemi {
         return temp;
     }
 
-    public Yemek RastgeleOner(){
+    public static Yemek RastgeleOner(){
         Random random = new Random();
         int index = random.nextInt(yemekler.size());
         return yemekler.get(index);
     }
 
-    public Boolean girisYap(){
+    public static Boolean girisYap(){
         return true;/////
     }
 
-    public Stack<Tüketilebilir> SonEklenenleriGöster(){
+    public static Stack<Tüketilebilir> SonEklenenleriGöster(){
         Stack<Tüketilebilir> temp = new Stack<>();
         return temp;//////
     }
 
-    boolean kullaniciDogrula(){
+    static boolean kullaniciDogrula(){
         return true;
     }
 /*
@@ -80,7 +83,7 @@ class YönetimSistemi {
     }
 */
 
-    private String listedenOku()throws IOException
+    private static String listedenKullanicilariOku()throws IOException
     {
         /* open csv file input stream*/
         BufferedReader reader = new BufferedReader(new FileReader("src//main//java//com//gtu//secpisir//secpisir//kullanici.csv"));
@@ -102,7 +105,9 @@ class YönetimSistemi {
         return null;
     }
 
-    static void listeyeYaz()throws IOException
+    public
+
+    static void listeyeKullanicilariYaz()throws IOException
     {
         String COMMA_DELIMITER=";";
         String SEPARATOR="\n";
@@ -133,6 +138,30 @@ class YönetimSistemi {
         filewriter.flush();
         filewriter.close();
 
+    }
+
+    public void yemekTarifleriniDosyadanOku() throws FileNotFoundException {
+        File file = new File("yemek.csv");
+        Scanner scanner = new Scanner(file);
+        while(scanner.hasNext()){
+            String line = scanner.nextLine();
+            Yemek yemek = new Yemek();
+            //Yemek Adı;Malzemeler;Kategori;Kalori;Hazırlanış;Hazırlanma Süresi;
+            String ingredientsWhole = line.split(";")[1];
+            ArrayList<Malzeme> malzemeArrayList = new ArrayList<>(6);
+            for (int i = 0; i < ingredientsWhole.split("-").length; i++) {
+                Malzeme malzeme = new Malzeme();
+                malzeme.setIsim(ingredientsWhole.split("-")[i]);
+                malzemeArrayList.add(malzeme);
+            }
+            yemek.setIsim(line.split(";")[0]);
+            yemek.setMalzemeler(malzemeArrayList);
+            yemek.setKategori(line.split(";")[2]);
+            yemek.setKalori(Integer.parseInt(line.split(";")[3]));
+            yemek.setTarif(line.split(";")[4]);
+            yemek.setTarifSuresi(Integer.parseInt(line.split(";")[5]));
+
+        }
     }
 
 }

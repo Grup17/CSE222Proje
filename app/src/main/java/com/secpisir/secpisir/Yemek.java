@@ -4,15 +4,15 @@ import java.util.ArrayList;
 public class Yemek extends Tüketilebilir {
 
     private ArrayList<Malzeme> malzemeler;
-    private Hazırlanıs hazirlanis;
+    private String hazirlanis;
     private String kategori;
+    private String isim;
     private int hazirlanisSuresi;
-
 
     public Yemek(){
 
     }
-    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,Hazırlanıs hazirlanis,int hazirlanisSuresi){
+    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,String hazirlanis,int hazirlanisSuresi){
 
         malzemeler = yeniMalzemeler;
         this.kategori = kategori;
@@ -43,12 +43,40 @@ public class Yemek extends Tüketilebilir {
     }
 
     @Override
-    public Hazırlanıs getTarif() {
+    public String getTarif() {
         return null;
     }
 
     @Override
     public int getKalori() {
         return Kalori;
+    }
+
+    public String getIsim() {
+        return isim;
+    }
+
+    public void setTarif(String hazirlanis) {
+        this.hazirlanis = hazirlanis;
+    }
+
+    public void setKategori(String kategori) {
+        this.kategori = kategori;
+    }
+
+    public void setTarifSuresi(int hazirlanisSuresi) {
+        this.hazirlanisSuresi = hazirlanisSuresi;
+    }
+
+    public void setMalzemeler(ArrayList<Malzeme> malzemeler) {
+        this.malzemeler = malzemeler;
+    }
+
+    public void setIsim(String isim) {
+        this.isim = isim;
+    }
+
+    public void setKalori(int kalori){
+        this.Kalori = kalori;
     }
 }

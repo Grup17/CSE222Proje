@@ -1,19 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MenuYoneticisi">
     <item
         android:id="@+id/nav_item"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/favoriler_menuicon"
         android:title="@string/favoriler"
-        android:onClick="menudenFavorilere"/>
+        android:onClick="menudenFavorilere"
+        app:showAsAction="never"/>
 
     <item android:id="@+id/nav_item2"
         android:icon="@mipmap/ic_launcher_round"
         android:title="@string/karaliste"
-        android:onClick="menudenKaralisteye"/>
+        android:onClick="menudenKaralisteye"
+        app:showAsAction="never"/>
 
     <item android:id="@+id/nav_item3"
         android:icon="@mipmap/ic_launcher_round"
-        android:title="@string/tarif_ekle"/>
+        android:title="@string/tarif_ekle"
+        android:onClick="menudenTarifEklemeye"
+        app:showAsAction="never"/>
+
+    <item android:id="@+id/nav_item4"
+        android:icon="@mipmap/ic_launcher_round"
+        android:title="@string/gecmis"
+        android:onClick="menudenGecmise"
+        app:showAsAction="never"/>
 </menu>

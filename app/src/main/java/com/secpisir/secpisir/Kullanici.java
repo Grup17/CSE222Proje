@@ -5,7 +5,7 @@ import java.io.IOException;
 import java.util.Iterator;
 import java.util.Stack;
 
-import static com.secpisir.secpisir.YönetimSistemi.listeyeYaz;
+import static com.secpisir.secpisir.YönetimSistemi.listeyeKullanicilariYaz;
 
 public class Kullanici {
 
@@ -37,7 +37,7 @@ public class Kullanici {
             return false;
         Boolean check=karaListe.add(yemek);
         try {
-            listeyeYaz();
+            listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
         }
@@ -47,7 +47,7 @@ public class Kullanici {
     public boolean karaListedenCıkar(String yemek) {
         Boolean check=karaListe.remove(yemek);
         try {
-            listeyeYaz();
+            listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
         }
@@ -59,7 +59,7 @@ public class Kullanici {
             return false;
         Boolean check=favoriler.add(yemek);
         try {
-            listeyeYaz();
+            listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
         }
@@ -69,7 +69,7 @@ public class Kullanici {
     public boolean favorilerdenCıkar(String yemek) {
         Boolean check=favoriler.remove(yemek);
         try {
-            listeyeYaz();
+            listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
         }
@@ -79,7 +79,7 @@ public class Kullanici {
     boolean gecmiseEkle(String yemek){
         Boolean check=gecmis.add(yemek);
         try {
-            listeyeYaz();
+            listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
         }
@@ -88,7 +88,7 @@ public class Kullanici {
     boolean gecmistenSil(String yemek){
         Boolean check=gecmis.remove(yemek);
         try {
-            listeyeYaz();
+            listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
         }

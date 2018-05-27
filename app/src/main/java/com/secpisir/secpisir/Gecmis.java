@@ -18,7 +18,7 @@ public class Gecmis extends AppCompatActivity implements KaralisteFragment.OnFra
         //TODO: kullanıcı sınıfından Karaliste datafieldì ile işlemi yap
         DenemeListesi deneme=new DenemeListesi();
         final Gecmis cntx = this;
-        final LinearLayout linearly = findViewById(R.id.linearLayout_karaliste);
+        final LinearLayout linearly = findViewById(R.id.linearLayout_gecmis);
         //frame layout oluşturuldu
         for (int i=0;i<deneme.getDeneme_liste().size();++i)
         {

@@ -24,13 +24,17 @@
         </activity>
         <activity android:name=".MenuTest" />
         <activity android:name=".KayitActivity" />
-        <activity android:name=".MainScreen" />
+        <activity
+            android:name=".MainScreen"
+            android:theme="@style/AppThemeWithActionBar"/>
         <activity android:name=".MenuYoneticisi" />
-        <activity android:name=".favoriler" />
-        <activity android:name=".karaliste" />
+        <activity android:name=".Favoriler" />
+        <activity android:name=".Karaliste" />
+        <activity android:name=".TarifEkle"/>
         <activity android:name=".IngredientActivity"
             android:theme="@style/Theme.AppCompat.Light"/>
         <activity android:name=".FerhatMain" />
+        <activity android:name=".Gecmis"/>
         <activity android:name=".YemekTarifi"></activity>
         <activity android:name=".KategorilerActivity"></activity>
     </application>

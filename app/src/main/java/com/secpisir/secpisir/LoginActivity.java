@@ -54,13 +54,22 @@ public class LoginActivity extends AppCompatActivity {
         }
     };*/
 
-    public void menudenKaralisteye(MenuItem item){
+    /* ------Menu Onclicks------- */
+    public void menudenKaralisteye(MenuItem item) {
         Intent intent = new Intent(this, Karaliste.class);
         startActivity(intent);
     }
-
     public void menudenFavorilere(MenuItem item) {
         Intent intent = new Intent(this, Favoriler.class);
         startActivity(intent);
     }
+    public void menudenTarifEklemeye(MenuItem item){
+        Intent intent = new Intent(this, TarifEkle.class);
+        startActivity(intent);
+    }
+    public void menudenGecmise (MenuItem item) {
+        Intent intent = new Intent(this, Gecmis.class);
+        startActivity(intent);
+    }
+    /* ------------- */
 }

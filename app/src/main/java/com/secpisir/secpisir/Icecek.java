@@ -4,7 +4,7 @@ import java.util.LinkedList;
 public class Icecek extends Tüketilebilir{
 
     private LinkedList<Malzeme> malzemeler;
-    private Hazırlanıs tarif;
+    private String tarif;
 
     public LinkedList<Malzeme> getMalzemeler() {
         return malzemeler;
@@ -16,7 +16,7 @@ public class Icecek extends Tüketilebilir{
     }
 
     @Override
-    public Hazırlanıs getTarif() {
+    public String getTarif() {
         return tarif;
     }
 
