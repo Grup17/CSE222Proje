@@ -2,6 +2,7 @@ package com.secpisir.secpisir;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
@@ -9,10 +10,10 @@ import static com.secpisir.secpisir.YönetimSistemi.listeyeKullanicilariYaz;
 
 public class Kullanici {
 
-    private BinarySearchTree<String> favoriler;
-    private BinarySearchTree<String>  karaListe;
+    private ArrayList<String> favoriler;
+    private ArrayList<String>  karaListe;
     private Stack<String> gecmis= new Stack<>();
-    private boolean girisYap=false;
+    private boolean girisYapildi = false;
     private String kullaniciAdi;
     private String isim;
     private String soyad;
@@ -26,8 +27,8 @@ public class Kullanici {
         this.soyad=soyad;
         this.sifre=sifre;
         this.kullaniciAdi =kullaniciAdi;
-        this.favoriler=setListe(favoriler);
-        this.karaListe=setListe(karaliste);
+        this.favoriler = setListe(favoriler);
+        this.karaListe = setListe(karaliste);
         setGecmis(gecmis);
     }
 
@@ -35,7 +36,7 @@ public class Kullanici {
     public boolean karaListeyeEkle(String yemek)  {
         if (favoriler.contains(yemek))
             return false;
-        Boolean check=karaListe.add(yemek);
+        Boolean check = karaListe.add(yemek);
         try {
             listeyeKullanicilariYaz();
         } catch (IOException e) {
@@ -96,10 +97,9 @@ public class Kullanici {
     }
 
 
-    private BinarySearchTree<String> setListe(String yemekler)
-        {
+    private ArrayList<String> setListe(String yemekler) {
         //TODO String ile arama sorun olursa yemek objesi oluşturulacak
-        BinarySearchTree<String> yemekListesi=new BinarySearchTree<>() ;
+        ArrayList<String> yemekListesi=new ArrayList<>() ;
         String[] data = yemekler.split("-");
         for(int i=0;i<data.length;++i)
             yemekListesi.add(data[i]);
@@ -127,10 +127,10 @@ public class Kullanici {
             sb.append(0);
         return sb.toString();
     }
-    public BinarySearchTree<String> getKaraListe(){
+    public ArrayList<String> getKaraListe(){
         return karaListe;
     }
-    public BinarySearchTree<String> getFavoriListe() {
+    public ArrayList<String> getFavoriListe() {
         return favoriler;
     }
 

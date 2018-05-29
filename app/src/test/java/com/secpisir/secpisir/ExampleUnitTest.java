@@ -9,6 +9,8 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.Writer;
+import java.util.ArrayList;
+import java.util.Iterator;
 
 import static org.junit.Assert.*;
 
@@ -33,6 +35,36 @@ public class ExampleUnitTest {
             System.out.println(YönetimSistemi.getYemekler().get(0).getMalzemeler());
         } catch (FileNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void yemeklerinOrtakMalzemeSayisi(){
+        try {
+            YönetimSistemi.yemekTarifleriniDosyadanOku();
+            System.out.println(YönetimSistemi.getYemekler());
+            Yemek yemek1 = YönetimSistemi.getYemek(18);
+            Yemek yemek2 = YönetimSistemi.getYemek(15);
+            System.out.println(YönetimSistemi.yemeklerinOrtakMalzemeSayisi(yemek1,yemek2));
+            System.out.println(YönetimSistemi.cizgedenOrtakMalzemeler(yemek1,yemek2));
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void kullaniciyaOzelYemekOner(){
+        try {
+            YönetimSistemi.listedenKullanicilariOku();
+            YönetimSistemi.yemekTarifleriniDosyadanOku();
+            for (Object o : YönetimSistemi.getKullaniciSet()) {
+                Kullanici k = (Kullanici)o;
+                ArrayList<Yemek> suggestions = YönetimSistemi.kullaniciyaOzelYemekOner(k);
+                System.out.println("Suggestions for " + k.getIsim()+":"
+                    + suggestions);
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }

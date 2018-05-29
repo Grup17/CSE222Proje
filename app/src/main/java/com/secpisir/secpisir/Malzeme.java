@@ -22,4 +22,16 @@ public class Malzeme {
 
     @Override
     public String toString() { return isim; }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Malzeme))
+            return false;
+        return isim.equals(((Malzeme)obj).isim);
+    }
+
+    @Override
+    public int hashCode() {
+        return isim.hashCode();
+    }
 }

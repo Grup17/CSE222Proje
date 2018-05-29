@@ -8,6 +8,7 @@ public class Yemek extends Tüketilebilir {
     private String kategori;
     private String isim;
     private String hazirlanisSuresi;
+    private int code;
 
     public Yemek(){
 
@@ -56,6 +57,10 @@ public class Yemek extends Tüketilebilir {
         return isim;
     }
 
+    public int getCode() {
+        return code;
+    }
+
     public void setTarif(String hazirlanis) {
         this.hazirlanis = hazirlanis;
     }
@@ -79,9 +84,24 @@ public class Yemek extends Tüketilebilir {
     public void setKalori(int kalori){
         this.Kalori = kalori;
     }
+    public void setCode(int code) {
+        this.code = code;
+    }
 
     @Override
     public String toString() {
         return isim;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if(!(obj instanceof Yemek))
+            return false;
+        return isim.equals(((Yemek) obj).isim);
+    }
+
+    @Override
+    public int hashCode() {
+        return toString().hashCode();
     }
 }
