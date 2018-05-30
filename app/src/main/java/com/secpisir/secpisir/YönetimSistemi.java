@@ -1,34 +1,27 @@
 package com.secpisir.secpisir;
 
-import android.app.Activity;
-import android.os.Bundle;
-import android.support.annotation.Nullable;
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
-import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
+import java.io.FileOutputStream;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
-import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
-import java.util.PriorityQueue;
 import java.util.Random;
-import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
 public class YönetimSistemi extends AppCompatActivity {
-    private static Map<String,String> kullaniciAdlari = new HashMap<>();
+    static Context context;
+    static Map<String,String> kullaniciAdlari = new HashMap<>();
     private static Map<String,String> kullaniciEmailleri = new HashMap<>();
     private static Stack<Yemek> EklenenYemekler;
     private static Stack<Icecek> EklenenIcecekler;
@@ -36,24 +29,21 @@ public class YönetimSistemi extends AppCompatActivity {
     private static ArrayList<Icecek> icecekler;
     //private static PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
     private static ArrayList<Malzeme> malzemeler = new ArrayList<>(40);
-    private static Set<Kullanici> kullaniciSet = new HashSet<>();
+    static Set<Kullanici> kullaniciSet = new HashSet<>();
     private static ListGraph yemeklerCizgesi = new ListGraph(50, false);
     private static InputStream kullanicilarStream;
     private static InputStream yemeklerStream;
-    private static Kullanici currentKullanici;
+    private static OutputStream kullaniciOutputStream;
 
-    YönetimSistemi() {
-        //listedenKullanicilariOku();
-        //yemekler = new ArrayList<>(50);
-    }
+    YönetimSistemi() {    }
+    YönetimSistemi(Context context) { this.context=context;   }
 
     public static ArrayList<Yemek> getYemekler() {
         return yemekler;
     }
     public static ArrayList<Malzeme> getMalzemeler() { return malzemeler; }
 
-    public static void setKullanici(Kullanici k){ currentKullanici = k; }
-    public static Kullanici getKullanici(){ return currentKullanici; }
+    public static void setKullaniciOutputStream(OutputStream op) { YönetimSistemi.kullaniciOutputStream = op; }
 
     public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
     public void setKullaniciInputStream(InputStream is){ kullanicilarStream = is; }
@@ -116,12 +106,11 @@ public class YönetimSistemi extends AppCompatActivity {
         return temp;//////
     }
 
-    public static Kullanici kullaniciDogrula(String isim, String sifre){
-        for (Kullanici kullanici : kullaniciSet) {
-            if(kullanici.getIsim().equals(isim) && kullanici.getSifre().equals(sifre))
-                return kullanici;
-        }
-        return null;
+    static boolean kullaniciDogrula(String kullaniciAdi, String sifre){
+        if(kullaniciAdlari.containsKey(kullaniciAdi) && kullaniciAdlari.get(kullaniciAdi).equals(sifre))
+            return true;
+        else
+            return false;
     }
 /*
     public Menu BuGununOnerisi(){
@@ -146,7 +135,7 @@ public class YönetimSistemi extends AppCompatActivity {
                     favorilerListesi.add(yemek);
                 }
                 //else
-                    //System.out.println(s + "was not equal to " + yemek.getIsim());
+                //System.out.println(s + "was not equal to " + yemek.getIsim());
             }
         }
         for (Yemek yemek : yemekler) {
@@ -185,41 +174,46 @@ public class YönetimSistemi extends AppCompatActivity {
         }
         //close reader
         scan.close();
+        for (Kullanici k:kullaniciSet)
+        {
+            System.out.println(k.getKullaniciAdi());
+        }
         return null;
     }
 
-    public static void listeyeKullanicilariYaz()throws IOException
+    public static boolean listeyeKullanicilariYaz()throws IOException
     {
+        FileOutputStream fos =context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
         String COMMA_DELIMITER=";";
+        byte comma[]=COMMA_DELIMITER.getBytes();
         String SEPARATOR="\n";
+        byte separator[]=SEPARATOR.getBytes();
         String HEADER="İsim;Soyisim;Kullanıcı Adı;Şifre;Email;Favoriler;KaraListe";
-        //FileWriter filewriter= new FileWriter("src//main//res//raw//kullanici.csv");
-        FileWriter filewriter= new FileWriter("kullanici.csv");
-
-        filewriter.append(HEADER);
+        byte header[]=HEADER.getBytes();
+        fos.write(header);
         for (Kullanici kullanici:kullaniciSet)
         {
             /*Respectively,function will be add information into the csv file.(separator,information,delimiter...*/
-            filewriter.append(SEPARATOR);
-            filewriter.append(kullanici.getIsim());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getSoyad());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getKullaniciAdi());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getSifre());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getEmail());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getFavoriListe().toString());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getKaraListe().toString());
-            filewriter.append(COMMA_DELIMITER);
-            filewriter.append(kullanici.getGecmis(0));
+            fos.write(separator);
+            fos.write(kullanici.getIsim().getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getSoyad().getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getKullaniciAdi().getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getSifre().getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getEmail().getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getListe(kullanici.getFavoriListe()).getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getListe(kullanici.getKaraListe()).getBytes());
+            fos.write(comma);
+            fos.write(kullanici.getListe(kullanici.getGecmis()).getBytes());
         }
-        filewriter.flush();
-        filewriter.close();
-
+        fos.flush();
+        fos.close();
+        return true;
     }
 
     public static void yemekTarifleriniDosyadanOku() {
@@ -252,13 +246,11 @@ public class YönetimSistemi extends AppCompatActivity {
                     malzeme.setKod(existingMealCode);
                 }
             }
-            String tarif = line.split(";")[4];
-            tarif = tarif.replace("\\n","\n");
             yemek.setIsim(line.split(";")[0]);
             yemek.setMalzemeler(malzemeArrayList);
             yemek.setKategori(line.split(";")[2]);
             yemek.setKalori(Integer.parseInt(line.split(";")[3]));
-            yemek.setTarif(tarif);
+            yemek.setTarif(line.split(";")[4]);
             yemek.setTarifSuresi(line.split(";")[5]);
             yemek.setCode(mealCode);
             yemekler.add(yemek);
@@ -272,7 +264,7 @@ public class YönetimSistemi extends AppCompatActivity {
                     //System.out.println("inserted " + yemek + " " + yemek1 + " " + ortakMalzemeler);
                     if(yemek.toString().equals("Kakaolu Islak Kek") && yemek1.toString().equals("Keşkül")) {
                         System.out.println("Ortal malzemeleri: " + ortakMalzemeler);
-                        System.out.println("graphtaki Ortal malzemeleri: " + yemeklerCizgesi.getEdge(yemek.getCode(),yemek1.getCode()).getWeight());
+                        System.out.println("graphtaki Ortak malzemeleri: " + yemeklerCizgesi.getEdge(yemek.getCode(),yemek1.getCode()).getWeight());
                     }
                 }
             }
