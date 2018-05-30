@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -158,17 +159,28 @@ public class YönetimSistemi extends AppCompatActivity {
                 //System.out.println(s + "was not equal to " + yemek.getIsim());
             }
         }
-        for (Yemek yemek : yemekler) {
+        PriorityQueue<OncelikliYemek> pq = new PriorityQueue<>(yemekler.size(), OncelikliYemek.getComparator());
+        int[] oncelikler = new int[yemekler.size()];
+
+        for (int i = 0; i < yemekler.size(); i++) {
+            Yemek yemek = yemekler.get(i);
             for (Yemek yemek1 : favorilerListesi) {
                 Edge e = yemeklerCizgesi.getEdge(yemek.getCode(), yemek1.getCode());
-                if(e != null && e.getWeight() >= 2)
-                    //TODO: use priority queue to determine suggestion priority
-                    if(!result.contains(yemek))
-                        result.add(yemek);
+                if (e != null)
+                    oncelikler[i] += e.getWeight();
             }
+            pq.offer(new OncelikliYemek(yemek, oncelikler[i]));
         }
+
+        while (!pq.isEmpty()) {
+            OncelikliYemek polledYemek = pq.poll();
+            if (!result.contains(polledYemek.yemek))
+                result.add(polledYemek.yemek);
+        }
+
         return result;
     }
+
 
     public static String listedenKullanicilariOku() {
         Scanner scan = new Scanner(kullanicilarStream);
