@@ -155,6 +155,7 @@ public class YönetimSistemi extends AppCompatActivity {
     public static ArrayList<Yemek> kullaniciyaOzelYemekOner(Kullanici kullanici){
         ArrayList<Yemek> favorilerListesi = new ArrayList<>(30);
         ArrayList<Yemek> result = new ArrayList<>(20);
+        String[] favoriler = kullanici.getFavoriListe().toString().split("-");
         for (String s: kullanici.getFavoriListe()) {
             for (Yemek yemek : yemekler) {
                 if(s.equals(yemek.getIsim())) {
