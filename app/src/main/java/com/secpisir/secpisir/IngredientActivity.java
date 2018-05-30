@@ -36,7 +36,7 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     SearchView searchView;
     ListView searchIngredient;
     ArrayAdapter<String> adapter;
-    ArrayList<Malzeme> secilenMalzemeler;
+    ArrayList<Malzeme> secilenMalzemeler = new ArrayList<>(5);
     MenuItem item;
 
     private void addFragment(int id, String buttonName) {
@@ -54,7 +54,6 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        secilenMalzemeler = new ArrayList<>();
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -64,7 +63,6 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
         searchView = findViewById(R.id.search_actionbar);
 
         ArrayList<String> ingredientArray = YönetimSistemi.getMalzemeIsimleri();
-        ingredientArray.add("Patlican");
         //ArrayList<String> ingredientArray = new ArrayList<>();
         //ingredientArray.addAll(Arrays.asList(getResources().getStringArray(R.array.dummy_ingredients)));
 
@@ -168,8 +166,10 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
                 addFragment(idNew, entry.toString());
                 /* --- */
                 for (int i = 0; i < YönetimSistemi.getMalzemeler().size(); i++) {
-                    if(entry.toString().equals(YönetimSistemi.getMalzeme(i).toString()))
+                    if(entry.toString().equals(YönetimSistemi.getMalzeme(i).toString())) {
                         secilenMalzemeler.add(YönetimSistemi.getMalzeme(i));
+                        break;
+                    }
                 }
                 /* --- */
             }
@@ -186,19 +186,21 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     }
 
     public void yemekOnerisineGec(View view){
+        System.out.println("secilen malzemeler:" + secilenMalzemeler);
         ArrayList<Yemek> sonuc = YönetimSistemi.malzemedenYemekOner(secilenMalzemeler);
-        if(sonuc.size() == 0)
-            throw new IllegalStateException();
         if(sonuc.size() == 0){
             Intent intent = new Intent(this, TarifBulunamadi.class);
             startActivity(intent);
         }
         else {
+            System.out.println("sonuc size:" + sonuc.size() + " sonuc :" + sonuc);
             Intent intent = new Intent(this, FerhatMain.class);
             ArrayList<Integer> sonucIDleri = new ArrayList<>(sonuc.size());
-            for (int i = 0; i < sonucIDleri.size(); i++) {
+            for (int i = 0; i < sonuc.size(); i++) {
                 sonucIDleri.add(sonuc.get(i).getCode());
+                System.out.println("Added to sonucIDleri :" + sonucIDleri.get(i));
             }
+            System.out.println("sonucIDleri :" + sonucIDleri);
             intent.putExtra("aramaSonucu", sonucIDleri);
             startActivity(intent);
         }

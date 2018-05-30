@@ -26,10 +26,13 @@ public class FerhatMain extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         /* ------ */
         ArrayList<Integer> yemekKodlari = getIntent().getIntegerArrayListExtra("aramaSonucu");
+        System.out.println("yemek kodlari: " + yemekKodlari);
         yemekler = new ArrayList<>(yemekKodlari.size());
         for (int i = 0; i < yemekKodlari.size(); i++) {
             yemekler.add(YönetimSistemi.getYemek(i));
         }
+        System.out.println("ferhat yemekler: " + yemekler);
+
         String[] tarifler = new String[yemekler.size()];
         String[] yemekIsimleri = new String[yemekler.size()];
         for (int i = 0; i < tarifler.length; i++) {

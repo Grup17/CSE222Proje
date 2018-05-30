@@ -22,7 +22,7 @@ public class LoginActivity extends AppCompatActivity {
             yönetimSistemi.setYemekInputStream(getResources().openRawResource(R.raw.yemek));
             YönetimSistemi.yemekTarifleriniDosyadanOku();
             YönetimSistemi.listedenKullanicilariOku();
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(0);
         }

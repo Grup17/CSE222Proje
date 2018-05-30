@@ -5,8 +5,11 @@ import org.junit.Test;
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.Console;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Writer;
 import java.util.ArrayList;
@@ -31,6 +34,11 @@ public class ExampleUnitTest {
             Process p = Runtime.getRuntime().exec("pwd");
             BufferedReader ips = new BufferedReader(new InputStreamReader(p.getInputStream()));
             System.out.println(ips.readLine());
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            InputStream kullanici = new FileInputStream("src//main//res//raw//kullanici.csv");
+            InputStream yemek = new FileInputStream("src//main//res//raw//yemek.csv");
+            yönetimSistemi.setKullaniciInputStream(kullanici);
+            yönetimSistemi.setYemekInputStream(yemek);
             YönetimSistemi.yemekTarifleriniDosyadanOku();
             System.out.println(YönetimSistemi.getYemekler().get(0).getMalzemeler());
         } catch (FileNotFoundException e) {
@@ -43,13 +51,15 @@ public class ExampleUnitTest {
     @Test
     public void yemeklerinOrtakMalzemeSayisi(){
         try {
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            InputStream yemek = new FileInputStream("src//main//res//raw//yemek.csv");
+            yönetimSistemi.setYemekInputStream(yemek);
             YönetimSistemi.yemekTarifleriniDosyadanOku();
-            System.out.println(YönetimSistemi.getYemekler());
             Yemek yemek1 = YönetimSistemi.getYemek(18);
             Yemek yemek2 = YönetimSistemi.getYemek(15);
             System.out.println(YönetimSistemi.yemeklerinOrtakMalzemeSayisi(yemek1,yemek2));
             System.out.println(YönetimSistemi.cizgedenOrtakMalzemeler(yemek1,yemek2));
-        } catch (FileNotFoundException e) {
+        } catch (Exception e) {
             e.printStackTrace();
         }
     }
@@ -57,7 +67,11 @@ public class ExampleUnitTest {
     @Test
     public void kullaniciyaOzelYemekOner(){
         try {
-            YönetimSistemi.listedenKullanicilariOku();
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            InputStream kullanici = new FileInputStream("src//main//res//raw//kullanici.csv");
+            InputStream yemek = new FileInputStream("src//main//res//raw//yemek.csv");
+            yönetimSistemi.setKullaniciInputStream(kullanici);
+            yönetimSistemi.setYemekInputStream(yemek);
             YönetimSistemi.yemekTarifleriniDosyadanOku();
             for (Object o : YönetimSistemi.getKullaniciSet()) {
                 Kullanici k = (Kullanici)o;
@@ -65,7 +79,29 @@ public class ExampleUnitTest {
                 System.out.println("Suggestions for " + k.getIsim()+":"
                     + suggestions);
             }
-        } catch (IOException e) {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void malzemedenYemekOner(){
+        YönetimSistemi yönetimSistemi = new YönetimSistemi();
+        try {
+            InputStream kullanici = new FileInputStream("src//main//res//raw//kullanici.csv");
+            InputStream yemek = new FileInputStream("src//main//res//raw//yemek.csv");
+            yönetimSistemi.setKullaniciInputStream(kullanici);
+            yönetimSistemi.setYemekInputStream(yemek);
+            YönetimSistemi.yemekTarifleriniDosyadanOku();
+            ArrayList<Malzeme> malzemes = new ArrayList<>(2);
+            malzemes.add(YönetimSistemi.getMalzeme(0));
+            malzemes.add(YönetimSistemi.getMalzeme(1));
+            malzemes.add(YönetimSistemi.getMalzeme(2));
+            malzemes.add(YönetimSistemi.getMalzeme(3));
+            ArrayList<Yemek> sonuc = YönetimSistemi.malzemedenYemekOner(malzemes);
+            System.out.println(sonuc);
+        }
+        catch(FileNotFoundException e){
             e.printStackTrace();
         }
     }
