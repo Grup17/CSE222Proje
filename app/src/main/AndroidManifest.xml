@@ -37,6 +37,7 @@
         <activity android:name=".Gecmis" />
         <activity android:name=".YemekTarifi" />
         <activity android:name=".KategorilerActivity" />
+        <activity android:name=".YönetimSistemi"/>
         <activity android:name=".TarifBulunamadi"></activity>
     </application>
 
