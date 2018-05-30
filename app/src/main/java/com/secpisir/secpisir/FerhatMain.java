@@ -83,8 +83,6 @@ public class FerhatMain extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            tarifiVerilecekYemek = yemekler.get(position);
-            System.out.println("tarifi verilecek yemek: " + position);
             addDotindicator(position);
         }
 
@@ -95,8 +93,10 @@ public class FerhatMain extends AppCompatActivity {
     };
 
     public void yemekTarifineGec(View view){
-        Intent intent = new Intent(this, YemekTarifi.class);
+        tarifiVerilecekYemek = yemekler.get(mSlideViewPager.getCurrentItem());
         YemekTarifi.setYemek(tarifiVerilecekYemek);
+        System.out.println("tarifi verilecek yemek: " + mSlideViewPager.getCurrentItem() + ":" + YemekTarifi.getYemek().getIsim());
+        Intent intent = new Intent(this, YemekTarifi.class);
         startActivity(intent);
     }
 }

@@ -13,14 +13,25 @@ public class YemekTarifi extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        TextView tw = findViewById(R.id.textViewYemekTarifi);
-        String content = "Kalori: " + yemek.getKategori();
-        tw.setText(yemek.getTarif());
         this.setContentView(R.layout.yemek_tarifi);
+        TextView tw = findViewById(R.id.textViewYemekTarifi);
+        if(yemek == null)
+            throw new IllegalStateException();
+        if(tw == null)
+            throw new IllegalStateException();
+        String content = "Kalori: " + yemek.getKategori();
+        System.out.println(yemek.getTarif());
+        tw.setText(yemek.getTarif());
     }
 
     public static void setYemek(Yemek y){
         yemek = y;
+        if(yemek == null)
+            throw new IllegalStateException();
+    }
+
+    public static Yemek getYemek() {
+        return yemek;
     }
 
     public void yemegiGecmiseEkle(View view){
