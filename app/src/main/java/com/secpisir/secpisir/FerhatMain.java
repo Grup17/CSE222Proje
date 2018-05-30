@@ -20,7 +20,6 @@ public class FerhatMain extends AppCompatActivity {
     private ArrayList<Yemek> yemekler;
 
     private SliderAdapter SliderAdapter;
-    private Yemek tarifiVerilecekYemek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +40,7 @@ public class FerhatMain extends AppCompatActivity {
             yemekIsimleri[i] = yemekler.get(i).getIsim();
             System.out.print(yemekIsimleri[i]);
         }
-        if(yemekler.size() == 0)
-            throw new IllegalStateException("NO");
+        System.out.println();
         /* ------ */
         setContentView(R.layout.slide_main);
 
@@ -93,10 +91,8 @@ public class FerhatMain extends AppCompatActivity {
     };
 
     public void yemekTarifineGec(View view){
-        tarifiVerilecekYemek = yemekler.get(mSlideViewPager.getCurrentItem());
-        YemekTarifi.setYemek(tarifiVerilecekYemek);
-        System.out.println("tarifi verilecek yemek: " + mSlideViewPager.getCurrentItem() + ":" + YemekTarifi.getYemek().getIsim());
         Intent intent = new Intent(this, YemekTarifi.class);
+        intent.putExtra("yemekID",mSlideViewPager.getCurrentItem());
         startActivity(intent);
     }
 }

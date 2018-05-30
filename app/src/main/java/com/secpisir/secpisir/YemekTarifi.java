@@ -14,6 +14,10 @@ public class YemekTarifi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.yemek_tarifi);
+        Integer yemekID = getIntent().getIntExtra("yemekID", -1);
+        System.out.println("yemekID " + yemekID);
+        yemek = YönetimSistemi.getYemek(yemekID);
+        System.out.println("gelen yemek:" + yemek.getTarif());
         TextView tw = findViewById(R.id.textViewYemekTarifi);
         if(yemek == null)
             throw new IllegalStateException();

@@ -45,7 +45,7 @@ public class Yemek extends Tüketilebilir {
 
     @Override
     public String getTarif() {
-        return null;
+        return hazirlanis;
     }
 
     @Override
