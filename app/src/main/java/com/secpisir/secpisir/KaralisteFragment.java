@@ -1,6 +1,7 @@
 package com.secpisir.secpisir;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -29,6 +30,7 @@ public class KaralisteFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
     }
 
     /**
@@ -47,17 +49,34 @@ public class KaralisteFragment extends Fragment {
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_karalistee, container, false);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,Bundle savedInstanceState) {
+        final View view = inflater.inflate(R.layout.fragment_karalistee, container, false);
 
         TextButton = view.findViewById(R.id.t_button);
         CloseButton = view.findViewById(R.id.c_button);
         CloseButton.setOnClickListener(new KaralisteFragment.FragmentClickListener(this));
         TextButton.setText(getArguments().getString(BUTTON_TEXT));
+
+        TextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+
+                //Start your activity here
+                Intent intent = new Intent(view.getContext(), YemekTarifi.class);
+                intent.putExtra("yemekID",YönetimSistemi.getYemek(TextButton.getText().toString()));
+                startActivity(intent);
+           }
+        });
         return view;
     }
-
+    /*
+        public void yemekTarifineGec(View view){
+            Intent intent = new Intent(this, YemekTarifi.class);
+            intent.putExtra("yemekID",BUTTON_TEXT);
+            startActivity(intent);
+        }*/
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
