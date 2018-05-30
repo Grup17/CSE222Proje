@@ -24,14 +24,15 @@ public class Favoriler extends AppCompatActivity implements FavorilerFragment.On
         final LinearLayout linearly = findViewById(R.id.linearLayout_favoriler);
         //frame layout oluşturuldu
         YönetimSistemi yönetimSistemi=new YönetimSistemi();
-        ArrayList<String> favoriler=yönetimSistemi.getCurrentKullanici().getFavoriListe();
-        for (int i=0;i<favoriler.size();++i)
+        BinarySearchTree<String> favorilerTree=yönetimSistemi.getCurrentKullanici().getFavoriListe();
+        String[] favoriler = favorilerTree.toString().split("-");
+        for (int i=0;i<favoriler.length;++i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
             flTest.setId(id);
             linearly.addView(flTest);
-            addFragment(id,favoriler.get(i));
+            addFragment(id,favoriler[i]);
         }
     }
 
@@ -50,9 +51,4 @@ public class Favoriler extends AppCompatActivity implements FavorilerFragment.On
         fragmentTransaction.add(id, fav);
         fragmentTransaction.commit();
     }
-  /*  public void yemekTarifineGec(View view){
-        Intent intent = new Intent(this, YemekTarifi.class);
-        intent.putExtra("yemekID",);
-        startActivity(intent);
-    }*/
 }
