@@ -35,6 +35,9 @@ public class YönetimSistemi extends AppCompatActivity {
     private static InputStream yemeklerStream;
     private static OutputStream kullaniciOutputStream;
 
+    private static Kullanici currentKullanici;
+    public static Kullanici getKullanici(){ return currentKullanici; }
+
     YönetimSistemi() {    }
     YönetimSistemi(Context context) { this.context=context;   }
 
@@ -44,6 +47,16 @@ public class YönetimSistemi extends AppCompatActivity {
     public static ArrayList<Malzeme> getMalzemeler() { return malzemeler; }
 
     public static void setKullaniciOutputStream(OutputStream op) { YönetimSistemi.kullaniciOutputStream = op; }
+
+    /**current kullanıcı için setter*/
+    public void setCurrentKullanici(String currentKullaniciAdi) {
+        for(Kullanici kullanici:kullaniciSet)
+            if(kullanici.getKullaniciAdi().equals(currentKullaniciAdi))
+            {
+                this.currentKullanici=kullanici;
+                break;
+            }
+    }
 
     public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
     public void setKullaniciInputStream(InputStream is){ kullanicilarStream = is; }
@@ -77,7 +90,6 @@ public class YönetimSistemi extends AppCompatActivity {
                 temp.add(yemek.get(i));
             }
         }
-
         malzeme.remove(malzeme.size()-1);
         if (malzeme.size() == 0)
             return yemek;
