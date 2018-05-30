@@ -27,14 +27,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="192dp"
                 android:background="@null"
-                android:onClick="register"
+                android:onClick="kayit"
                 android:scaleType="fitCenter"
                 android:src="@drawable/blank_avatar"
                 tools:layout_editor_absoluteX="47dp"
                 tools:layout_editor_absoluteY="16dp" />
 
             <EditText
-                android:id="@+id/editText14"
+                android:id="@+id/edit_kullaniciadi"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -45,20 +45,33 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editText10"
+                android:id="@+id/edit_ad"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
                 android:layout_marginLeft="20dp"
                 android:layout_marginRight="25dp"
                 android:ems="10"
-                android:hint="Ad Soyad"
+                android:hint="Ad"
                 android:inputType="text"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="278dp" />
 
             <EditText
-                android:id="@+id/editText18"
+                android:id="@+id/edit_soyad"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="25dp"
+                android:ems="10"
+                android:hint="Soyad"
+                android:inputType="text"
+                tools:layout_editor_absoluteX="0dp"
+                tools:layout_editor_absoluteY="278dp" />
+
+            <EditText
+                android:id="@+id/edit_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -69,7 +82,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/editText15"
+                android:id="@+id/edit_sifre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -80,7 +93,7 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editText17"
+                android:id="@+id/edit_sifre_tekrar"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginBottom="10dp"
@@ -91,7 +104,7 @@
                 android:inputType="textPassword" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/button_kayit_ol"
                 android:layout_width="match_parent"
                 android:layout_height="61dp"
                 android:layout_marginBottom="10dp"
