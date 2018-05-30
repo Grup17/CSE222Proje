@@ -105,4 +105,24 @@ public class ExampleUnitTest {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void kullaniciDogrula(){
+        try {
+            initializeYönetimSistemi();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        String kisim = "ssaricayir", ksifre = "s12sasa";
+        System.out.print(YönetimSistemi.kullaniciDogrula(kisim,ksifre));
+    }
+
+    public void initializeYönetimSistemi() throws FileNotFoundException {
+        YönetimSistemi yönetimSistemi = new YönetimSistemi();
+        InputStream kullanici = new FileInputStream("src//main//res//raw//kullanici.csv");
+        InputStream yemek = new FileInputStream("src//main//res//raw//yemek.csv");
+        yönetimSistemi.setKullaniciInputStream(kullanici);
+        yönetimSistemi.setYemekInputStream(yemek);
+        YönetimSistemi.yemekTarifleriniDosyadanOku();
+    }
 }

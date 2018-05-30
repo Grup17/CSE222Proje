@@ -60,11 +60,11 @@ public class Kullanici {
         if (karaListe.contains(yemek))
             return false;
         Boolean check=favoriler.add(yemek);
-        try {
+        /*try {
             listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
-        }
+        }*/
         return check;
     }
     //

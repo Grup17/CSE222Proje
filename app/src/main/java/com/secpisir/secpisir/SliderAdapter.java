@@ -13,19 +13,23 @@ import android.widget.TextView;
 
 public class SliderAdapter extends PagerAdapter {
 
-
+    int sliderSize;
+    public int[] slide_images;
     Context context;
     LayoutInflater layoutInflater;
 
-    public SliderAdapter(Context context){
+    public SliderAdapter(Context context, int sliderSize){
         this.context=context;
+        this.sliderSize = sliderSize;
+        slide_images = new int[sliderSize];
+        for (int i = 0; i < sliderSize; i++) {
+            if(i%2 == 0)
+                slide_images[i] = R.drawable.code_icon;
+            else
+                slide_images[i] = R.drawable.eat_icon;
+        }
     }
 
-    public int[] slide_images = {
-            R.drawable.eat_icon,
-            R.drawable.code_icon,
-            R.drawable.eat_icon
-    };
     public String[] slide_headings={"YEMEĞİN ADI","YEMEĞİN ADI","YEMEĞİN ADI"};
     public String[] slide_decripsions={"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."};
 

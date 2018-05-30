@@ -18,6 +18,7 @@ public class FerhatMain extends AppCompatActivity {
 
     private TextView[] mDots;
     private ArrayList<Yemek> yemekler;
+    private BinarySearchTree<Yemek> yemeklerBST;
 
     private SliderAdapter SliderAdapter;
 
@@ -47,18 +48,18 @@ public class FerhatMain extends AppCompatActivity {
         mSlideViewPager = findViewById(R.id.sliderViewPager);
         mDotLayout = findViewById(R.id.dotsLayout);
 
-        SliderAdapter = new SliderAdapter(this);
+        SliderAdapter = new SliderAdapter(this, yemekKodlari.size());
         SliderAdapter.setSlideDescriptions(tarifler);
         SliderAdapter.setSlideHeading(yemekIsimleri);
         mSlideViewPager.setAdapter(SliderAdapter);
-        addDotindicator(0);
+        //addDotindicator(0);
         mSlideViewPager.addOnPageChangeListener(viewListener);
 
     }
 
 
-    public void addDotindicator(int position){
-        mDots = new TextView[3];
+    /*public void addDotindicator(int position){
+        mDots = new TextView[10];
         mDotLayout.removeAllViews();
         for(int i = 0 ; i<mDots.length;i++){
 
@@ -72,7 +73,7 @@ public class FerhatMain extends AppCompatActivity {
         if(mDots.length>0){
             mDots[position].setTextColor(getResources().getColor(R.color.colorAccent));
         }
-    }
+    }*/
     ViewPager.OnPageChangeListener viewListener = new ViewPager.OnPageChangeListener() {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -81,7 +82,7 @@ public class FerhatMain extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
-            addDotindicator(position);
+            //addDotindicator(position);
         }
 
         @Override

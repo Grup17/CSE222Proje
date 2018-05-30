@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     }*/
 
-    /*public void onLoginButtonClick(View view){
+    /*public void girisButonu(View view){
         Intent intent = new Intent(this, MainScreen.class);
         startActivity(intent);
     }*/

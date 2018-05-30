@@ -90,7 +90,7 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginBottom="30dp"
                         android:background="@drawable/ovalbuttonwhite"
-                        android:onClick="onLoginButtonClick"
+                        android:onClick="girisButonu"
                         android:text="@string/giris_yap"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -39,7 +39,7 @@ public class YönetimSistemi extends AppCompatActivity {
     public static Kullanici getKullanici(){ return currentKullanici; }
 
     YönetimSistemi() {    }
-    YönetimSistemi(Context context) { this.context=context;   }
+    YönetimSistemi(Context context) { YönetimSistemi.context =context;   }
 
     public static ArrayList<Yemek> getYemekler() {
         return yemekler;
@@ -53,7 +53,7 @@ public class YönetimSistemi extends AppCompatActivity {
         for(Kullanici kullanici:kullaniciSet)
             if(kullanici.getKullaniciAdi().equals(currentKullaniciAdi))
             {
-                this.currentKullanici=kullanici;
+                currentKullanici=kullanici;
                 break;
             }
     }
@@ -119,10 +119,7 @@ public class YönetimSistemi extends AppCompatActivity {
     }
 
     static boolean kullaniciDogrula(String kullaniciAdi, String sifre){
-        if(kullaniciAdlari.containsKey(kullaniciAdi) && kullaniciAdlari.get(kullaniciAdi).equals(sifre))
-            return true;
-        else
-            return false;
+        return kullaniciAdlari.containsKey(kullaniciAdi) && kullaniciAdlari.get(kullaniciAdi).equals(sifre);
     }
 /*
     public Menu BuGununOnerisi(){
@@ -195,7 +192,7 @@ public class YönetimSistemi extends AppCompatActivity {
 
     public static boolean listeyeKullanicilariYaz()throws IOException
     {
-        FileOutputStream fos =context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
+        FileOutputStream fos = context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
         String COMMA_DELIMITER=";";
         byte comma[]=COMMA_DELIMITER.getBytes();
         String SEPARATOR="\n";
