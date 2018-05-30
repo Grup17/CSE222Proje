@@ -52,7 +52,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout">
 
         <Button
-            android:id="@+id/button11"
+            android:id="@+id/butoncorba"
+            android:onClick="kategorilerdenSlidera"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -60,7 +61,8 @@
             android:text="ÇORBA" />
 
         <Button
-            android:id="@+id/button12"
+            android:id="@+id/butonanayemek"
+            android:onClick="kategorilerdenSlidera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
@@ -108,7 +110,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout3">
 
         <Button
-            android:id="@+id/button15"
+            android:id="@+id/butonarayemek"
+            android:onClick="kategorilerdenSlidera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
@@ -117,7 +120,8 @@
             android:text="ARA YEMEK" />
 
         <Button
-            android:id="@+id/button16"
+            android:id="@+id/butonsalata"
+            android:onClick="kategorilerdenSlidera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
@@ -169,7 +173,8 @@
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4">
 
         <Button
-            android:id="@+id/button19"
+            android:id="@+id/butonicecekler"
+            android:onClick="kategorilerdenSlidera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"
@@ -178,7 +183,8 @@
             android:text="İÇECEKLER" />
 
         <Button
-            android:id="@+id/button20"
+            android:id="@+id/butontatlilar"
+            android:onClick="kategorilerdenSlidera"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginStart="2dp"

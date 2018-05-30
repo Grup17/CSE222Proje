@@ -37,9 +37,10 @@ public class YönetimSistemi extends AppCompatActivity {
 
     private static Kullanici currentKullanici;
     public static Kullanici getKullanici(){ return currentKullanici; }
+    public static Kullanici getCurrentKullanici(){ return currentKullanici; }
 
     YönetimSistemi() {    }
-    YönetimSistemi(Context context) { YönetimSistemi.context =context;   }
+    YönetimSistemi(Context context) { YönetimSistemi.context = context;   }
 
     public static ArrayList<Yemek> getYemekler() {
         return yemekler;
@@ -77,6 +78,16 @@ public class YönetimSistemi extends AppCompatActivity {
         ArrayList<String> result = new ArrayList<>(malzemeler.size());
         for (Malzeme malzeme : malzemeler) {
             result.add(malzeme.getIsim());
+        }
+        return result;
+    }
+
+    public static ArrayList<Integer> kategoridenYemekIDleri(String kategori){
+        ArrayList<Integer> result = new ArrayList<>(yemekler.size()/5);
+        for (Yemek yemek : yemekler) {
+            if(yemek.getKategori().equals(kategori)){
+                result.add(yemek.getCode());
+            }
         }
         return result;
     }
