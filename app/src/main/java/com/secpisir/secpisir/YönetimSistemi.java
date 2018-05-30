@@ -58,6 +58,12 @@ public class YönetimSistemi extends AppCompatActivity {
                 break;
             }
     }
+    public static int getYemek(String isim){
+        for(Yemek yemek:yemekler)
+            if (yemek.getIsim().equals(isim))
+                return yemek.getCode();
+        return -1;
+    }
 
     public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
     public void setKullaniciInputStream(InputStream is){ kullanicilarStream = is; }
