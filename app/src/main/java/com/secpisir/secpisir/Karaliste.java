@@ -8,23 +8,26 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import java.util.ArrayList;
+
 public class Karaliste extends AppCompatActivity implements KaralisteFragment.OnFragmentInteractionListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_karaliste);
         //TODO: kullanıcı sınıfından Karaliste datafieldì ile işlemi yap
-        DenemeListesi deneme=new DenemeListesi();
+        YönetimSistemi yönetimSistemi=new YönetimSistemi();
+        ArrayList<String> karaliste=yönetimSistemi.getCurrentKullanici().getKaraListe();
         final Karaliste cntx = this;
         final LinearLayout linearly = findViewById(R.id.linearLayout_karaliste);
         //frame layout oluşturuldu
-        for (int i=0;i<deneme.getDeneme_liste().size();++i)
+        for (int i=0;i<karaliste.size();++i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
             flTest.setId(id);
             linearly.addView(flTest);
-            addFragment(id,deneme.getDeneme_liste().get(i));
+            addFragment(id,karaliste.get(i));
         }
     }
     @Override

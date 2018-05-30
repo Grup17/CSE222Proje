@@ -1,7 +1,9 @@
 package com.secpisir.secpisir;
+import android.support.annotation.NonNull;
+
 import java.util.ArrayList;
 
-public class Yemek extends Tüketilebilir {
+public class Yemek extends Tüketilebilir implements Comparable<Yemek> {
 
     private ArrayList<Malzeme> malzemeler;
     private String hazirlanis;
@@ -45,7 +47,7 @@ public class Yemek extends Tüketilebilir {
 
     @Override
     public String getTarif() {
-        return null;
+        return hazirlanis;
     }
 
     @Override
@@ -103,5 +105,10 @@ public class Yemek extends Tüketilebilir {
     @Override
     public int hashCode() {
         return toString().hashCode();
+    }
+
+    @Override
+    public int compareTo(@NonNull Yemek o) {
+        return isim.compareTo(o.isim);
     }
 }

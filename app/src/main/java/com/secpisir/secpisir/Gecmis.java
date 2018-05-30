@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
+import java.util.Stack;
+
 public class Gecmis extends AppCompatActivity implements KaralisteFragment.OnFragmentInteractionListener  {
 
     @Override
@@ -16,17 +18,18 @@ public class Gecmis extends AppCompatActivity implements KaralisteFragment.OnFra
         setContentView(R.layout.activity_gecmis);
 
         //TODO: kullanıcı sınıfından Karaliste datafieldì ile işlemi yap
-        DenemeListesi deneme=new DenemeListesi();
+        YönetimSistemi yönetimSistemi=new YönetimSistemi();
+        Stack<String> gecmis=yönetimSistemi.getCurrentKullanici().getGecmis();
         final Gecmis cntx = this;
         final LinearLayout linearly = findViewById(R.id.linearLayout_gecmis);
         //frame layout oluşturuldu
-        for (int i=0;i<deneme.getDeneme_liste().size();++i)
+        for (int i=0;i<gecmis.size();++i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
             flTest.setId(id);
             linearly.addView(flTest);
-            addFragment(id,deneme.getDeneme_liste().get(i));
+            addFragment(id,gecmis.get(i));
         }
     }
 
