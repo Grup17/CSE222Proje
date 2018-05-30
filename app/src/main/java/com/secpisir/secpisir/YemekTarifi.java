@@ -17,15 +17,12 @@ public class YemekTarifi extends AppCompatActivity {
         Integer yemekID = getIntent().getIntExtra("yemekID", -1);
         System.out.println("yemekID " + yemekID);
         yemek = YönetimSistemi.getYemek(yemekID);
-        System.out.println("gelen yemek:" + yemek.getTarif());
         TextView tw = findViewById(R.id.textViewYemekTarifi);
         if(yemek == null)
             throw new IllegalStateException();
-        if(tw == null)
-            throw new IllegalStateException();
-        String content = "Kalori: " + yemek.getKategori();
-        System.out.println(yemek.getTarif());
-        tw.setText(yemek.getTarif());
+        String content = "Kalori: " + yemek.getKalori() + "\n";
+        content += yemek.getTarif();
+        tw.setText(content);
     }
 
     public static void setYemek(Yemek y){

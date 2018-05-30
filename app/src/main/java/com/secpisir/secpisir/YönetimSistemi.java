@@ -252,11 +252,13 @@ public class YönetimSistemi extends AppCompatActivity {
                     malzeme.setKod(existingMealCode);
                 }
             }
+            String tarif = line.split(";")[4];
+            tarif = tarif.replace("\\n","\n");
             yemek.setIsim(line.split(";")[0]);
             yemek.setMalzemeler(malzemeArrayList);
             yemek.setKategori(line.split(";")[2]);
             yemek.setKalori(Integer.parseInt(line.split(";")[3]));
-            yemek.setTarif(line.split(";")[4]);
+            yemek.setTarif(tarif);
             yemek.setTarifSuresi(line.split(";")[5]);
             yemek.setCode(mealCode);
             yemekler.add(yemek);
