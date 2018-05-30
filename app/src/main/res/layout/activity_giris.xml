@@ -42,7 +42,7 @@
 
 
                 <EditText
-                    android:id="@+id/editTextSifre"
+                    android:id="@+id/edit_sifre"
                     android:layout_width="166dp"
                     android:layout_height="28dp"
                     android:layout_alignParentTop="true"
@@ -57,10 +57,10 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/editText2" />
+                    app:layout_constraintTop_toBottomOf="@+id/edit_sifre" />
 
                 <EditText
-                    android:id="@+id/editTextKAdi"
+                    android:id="@+id/edit_kullaniciadi"
                     android:layout_width="166dp"
                     android:layout_height="28dp"
                     android:layout_alignParentTop="true"
@@ -68,9 +68,9 @@
                     android:layout_marginTop="31dp"
                     android:background="@color/white"
                     android:ems="10"
-                    android:hint="@string/isim"
+                    android:hint="Kullanıcı Adı"
                     android:inputType="textPersonName"
-                    app:layout_constraintBottom_toTopOf="@+id/editText"
+                    app:layout_constraintBottom_toTopOf="@+id/edit_kullaniciadi"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
@@ -83,7 +83,7 @@
                     android:layout_marginBottom="33dp">
 
                     <Button
-                        android:id="@+id/button"
+                        android:id="@+id/button_giris_yap"
                         android:layout_width="146dp"
                         android:layout_height="35dp"
                         android:layout_alignParentBottom="true"
@@ -95,7 +95,7 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/editText"
+                        app:layout_constraintTop_toBottomOf="@+id/button_giris_yap"
                         tools:layout_height="60dp"
                         tools:layout_width="110dp" />
                 </LinearLayout>
@@ -103,19 +103,19 @@
             </android.widget.RelativeLayout>
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/button_misafir"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
                 android:layout_marginStart="20dp"
                 android:background="@drawable/ovalbuttonwhite"
-                android:onClick="misafirButonu"
+                android:onClick="onLoginButtonClick"
                 android:padding="3dp"
                 android:text="@string/misafir"
                 tools:layout_editor_absoluteY="418dp" />
 
             <Button
-                android:id="@+id/button3"
+                android:id="@+id/button_kayit_ol"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="20dp"
