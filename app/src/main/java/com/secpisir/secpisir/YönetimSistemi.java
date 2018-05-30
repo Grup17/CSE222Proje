@@ -221,7 +221,7 @@ public class YönetimSistemi extends AppCompatActivity {
 
     public static boolean listeyeKullanicilariYaz()throws IOException
     {
-        FileOutputStream fos = context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
+        FileOutputStream fos =context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
         String COMMA_DELIMITER=";";
         byte comma[]=COMMA_DELIMITER.getBytes();
         String SEPARATOR="\n";
@@ -243,9 +243,9 @@ public class YönetimSistemi extends AppCompatActivity {
             fos.write(comma);
             fos.write(kullanici.getEmail().getBytes());
             fos.write(comma);
-            fos.write(kullanici.getListe(kullanici.getFavoriListe()).getBytes());
+            fos.write(kullanici.getFavoriListe().toString().getBytes());
             fos.write(comma);
-            fos.write(kullanici.getListe(kullanici.getKaraListe()).getBytes());
+            fos.write(kullanici.getKaraListe().toString().getBytes());
             fos.write(comma);
             fos.write(kullanici.getListe(kullanici.getGecmis()).getBytes());
         }
@@ -253,7 +253,6 @@ public class YönetimSistemi extends AppCompatActivity {
         fos.close();
         return true;
     }
-
     public static void yemekTarifleriniDosyadanOku() {
         Scanner scanner = new Scanner(yemeklerStream);
         if(scanner.hasNext())
