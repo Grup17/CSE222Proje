@@ -14,6 +14,16 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_giris);
+        try {
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            yönetimSistemi.setKullaniciInputStream(getResources().openRawResource(R.raw.kullanici));
+            yönetimSistemi.setYemekInputStream(getResources().openRawResource(R.raw.yemek));
+            YönetimSistemi.yemekTarifleriniDosyadanOku();
+            YönetimSistemi.listedenKullanicilariOku();
+        } catch (Exception e) {
+            e.printStackTrace();
+            System.exit(0);
+        }
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
     }

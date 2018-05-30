@@ -25,7 +25,6 @@ public class SliderAdapter extends PagerAdapter {
             R.drawable.eat_icon,
             R.drawable.code_icon,
             R.drawable.eat_icon
-
     };
     public String[] slide_headings={"YEMEĞİN ADI","YEMEĞİN ADI","YEMEĞİN ADI"};
     public String[] slide_decripsions={"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."};

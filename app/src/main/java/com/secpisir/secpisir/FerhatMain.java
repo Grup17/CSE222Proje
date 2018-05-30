@@ -20,6 +20,7 @@ public class FerhatMain extends AppCompatActivity {
     private ArrayList<Yemek> yemekler;
 
     private SliderAdapter SliderAdapter;
+    private Yemek tarifiVerilecekYemek;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -82,8 +83,9 @@ public class FerhatMain extends AppCompatActivity {
 
         @Override
         public void onPageSelected(int position) {
+            tarifiVerilecekYemek = yemekler.get(position);
+            System.out.println("tarifi verilecek yemek: " + position);
             addDotindicator(position);
-
         }
 
         @Override
@@ -94,6 +96,7 @@ public class FerhatMain extends AppCompatActivity {
 
     public void yemekTarifineGec(View view){
         Intent intent = new Intent(this, YemekTarifi.class);
+        YemekTarifi.setYemek(tarifiVerilecekYemek);
         startActivity(intent);
     }
 }

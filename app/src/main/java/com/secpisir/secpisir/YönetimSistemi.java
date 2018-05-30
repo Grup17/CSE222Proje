@@ -40,6 +40,7 @@ public class YönetimSistemi extends AppCompatActivity {
     private static ListGraph yemeklerCizgesi = new ListGraph(50, false);
     private static InputStream kullanicilarStream;
     private static InputStream yemeklerStream;
+    private static Kullanici currentKullanici;
 
     YönetimSistemi() {
         //listedenKullanicilariOku();
@@ -50,6 +51,10 @@ public class YönetimSistemi extends AppCompatActivity {
         return yemekler;
     }
     public static ArrayList<Malzeme> getMalzemeler() { return malzemeler; }
+
+    public static void setKullanici(Kullanici k){ currentKullanici = k; }
+    public static Kullanici getKullanici(){ return currentKullanici; }
+
     public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
     public void setKullaniciInputStream(InputStream is){ kullanicilarStream = is; }
 
@@ -111,8 +116,12 @@ public class YönetimSistemi extends AppCompatActivity {
         return temp;//////
     }
 
-    static boolean kullaniciDogrula(){
-        return true;
+    public static Kullanici kullaniciDogrula(String isim, String sifre){
+        for (Kullanici kullanici : kullaniciSet) {
+            if(kullanici.getIsim().equals(isim) && kullanici.getSifre().equals(sifre))
+                return kullanici;
+        }
+        return null;
     }
 /*
     public Menu BuGununOnerisi(){
