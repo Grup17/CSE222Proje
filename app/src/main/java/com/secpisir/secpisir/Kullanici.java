@@ -2,6 +2,7 @@ package com.secpisir.secpisir;
 
 
 import java.io.IOException;
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
@@ -113,6 +114,16 @@ public class Kullanici {
     }
     public Stack<String> getGecmis() {
         return gecmis;
+    }
+
+    public String getListe(AbstractList<String> liste){
+        StringBuilder sb= new StringBuilder();
+        int i=0;
+        do {
+            sb.append(liste.get(i));
+            i++;
+        }while(i<liste.size()&&sb.append("-")!=null);
+        return sb.toString();
     }
 
     public String getGecmis(int ignore){
