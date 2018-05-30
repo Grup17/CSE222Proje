@@ -41,6 +41,8 @@ public class LoginActivity extends AppCompatActivity {
                 if(yönetimSistemi.kullaniciDogrula( kullaniciAdi.getText().toString(),sifre.getText().toString())) {
 
                     String n  = kullaniciAdi.getText().toString();
+                    //current kullanıcı
+                    yönetimSistemi.setCurrentKullanici(n);
                     sp.edit().putBoolean("logged",true).apply();
                     SharedPreferences.Editor editor = sp.edit();
                     editor.putString(kAdi, n);
