@@ -16,6 +16,7 @@ import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -149,15 +150,26 @@ public class YönetimSistemi extends AppCompatActivity {
                     //System.out.println(s + "was not equal to " + yemek.getIsim());
             }
         }
-        for (Yemek yemek : yemekler) {
+
+        PriorityQueue<OncelikliYemek> pq = new PriorityQueue<>(yemekler.size(), OncelikliYemek.getComparator());
+        int[] oncelikler = new int[yemekler.size()];
+
+        for (int i = 0; i < yemekler.size(); i++) {
+            Yemek yemek = yemekler.get(i);
             for (Yemek yemek1 : favorilerListesi) {
                 Edge e = yemeklerCizgesi.getEdge(yemek.getCode(), yemek1.getCode());
-                if(e != null && e.getWeight() >= 2)
-                    //TODO: use priority queue to determine suggestion priority
-                    if(!result.contains(yemek))
-                        result.add(yemek);
+                if (e != null)
+                    oncelikler[i] += e.getWeight();
             }
+            pq.offer(new OncelikliYemek(yemek, oncelikler[i]));
         }
+
+        while (!pq.isEmpty()) {
+            OncelikliYemek polledYemek = pq.poll();
+            if (!result.contains(polledYemek.yemek))
+                result.add(polledYemek.yemek);
+        }
+
         return result;
     }
 

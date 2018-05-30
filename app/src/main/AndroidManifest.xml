@@ -32,6 +32,7 @@
         <activity android:name=".TarifEkle" />
         <activity
             android:name=".IngredientActivity"
+            android:windowSoftInputMode="stateVisible|adjustNothing"
             android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".FerhatMain" />
         <activity android:name=".Gecmis" />

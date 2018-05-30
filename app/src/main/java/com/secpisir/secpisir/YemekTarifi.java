@@ -14,7 +14,7 @@ public class YemekTarifi extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.yemek_tarifi);
-        TextView tw = findViewById(R.id.textViewYemekTarifi);
+        TextView tw = (TextView) findViewById(R.id.textViewYemekTarifi);
         if(yemek == null)
             throw new IllegalStateException();
         if(tw == null)
