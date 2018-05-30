@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -20,23 +21,23 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity">
-        </activity>
+        <activity android:name=".LoginActivity"></activity>
         <activity android:name=".MenuTest" />
         <activity android:name=".KayitActivity" />
         <activity
             android:name=".MainScreen"
-            android:theme="@style/AppThemeWithActionBar"/>
-        <activity android:name=".MenuYoneticisi" />
+            android:theme="@style/AppThemeWithActionBar" />
         <activity android:name=".Favoriler" />
         <activity android:name=".Karaliste" />
-        <activity android:name=".TarifEkle"/>
-        <activity android:name=".IngredientActivity"
-            android:theme="@style/Theme.AppCompat.Light"/>
+        <activity android:name=".TarifEkle" />
+        <activity
+            android:name=".IngredientActivity"
+            android:theme="@style/Theme.AppCompat.Light" />
         <activity android:name=".FerhatMain" />
-        <activity android:name=".Gecmis"/>
-        <activity android:name=".YemekTarifi"></activity>
-        <activity android:name=".KategorilerActivity"></activity>
+        <activity android:name=".Gecmis" />
+        <activity android:name=".YemekTarifi" />
+        <activity android:name=".KategorilerActivity" />
+        <activity android:name=".TarifBulunamadi"></activity>
     </application>
 
 </manifest>

@@ -36,6 +36,7 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     SearchView searchView;
     ListView searchIngredient;
     ArrayAdapter<String> adapter;
+    ArrayList<Malzeme> secilenMalzemeler;
     MenuItem item;
 
     private void addFragment(int id, String buttonName) {
@@ -53,6 +54,7 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        secilenMalzemeler = new ArrayList<>();
 //        requestWindowFeature(Window.FEATURE_NO_TITLE);
 //        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
 //                WindowManager.LayoutParams.FLAG_FULLSCREEN);
@@ -61,8 +63,10 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
         searchIngredient = findViewById(R.id.search_ingredient_list);
         searchView = findViewById(R.id.search_actionbar);
 
-        ArrayList<String> ingredientArray = new ArrayList<>();
-        ingredientArray.addAll(Arrays.asList(getResources().getStringArray(R.array.dummy_ingredients)));
+        ArrayList<String> ingredientArray = YönetimSistemi.getMalzemeIsimleri();
+        ingredientArray.add("Patlican");
+        //ArrayList<String> ingredientArray = new ArrayList<>();
+        //ingredientArray.addAll(Arrays.asList(getResources().getStringArray(R.array.dummy_ingredients)));
 
         adapter = new ArrayAdapter<String>(this,
                 android.R.layout.simple_list_item_1, ingredientArray);
@@ -112,7 +116,8 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
                 int id = View.generateViewId();
                 tempLay.setId(id);
                 linearly.addView(tempLay);
-                addFragment(id, query);
+                //TODO: change line below back if necessary
+                //addFragment(id, query);
                 return false;
             }
 
@@ -154,14 +159,19 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
-                Object entry=  parent.getAdapter().getItem(position);
+                Object entry = parent.getAdapter().getItem(position);
                 searchIngredient.setVisibility(View.GONE);
                 FrameLayout tempLay = new FrameLayout(cntx);
                 int idNew = View.generateViewId();
                 tempLay.setId(idNew);
                 linearly.addView(tempLay);
                 addFragment(idNew, entry.toString());
-                searchIngredient.setVisibility(View.GONE);
+                /* --- */
+                for (int i = 0; i < YönetimSistemi.getMalzemeler().size(); i++) {
+                    if(entry.toString().equals(YönetimSistemi.getMalzeme(i).toString()))
+                        secilenMalzemeler.add(YönetimSistemi.getMalzeme(i));
+                }
+                /* --- */
             }
         });
         return super.onCreateOptionsMenu(menu);
@@ -176,8 +186,22 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     }
 
     public void yemekOnerisineGec(View view){
-        Intent intent = new Intent(this, FerhatMain.class);
-        startActivity(intent);
+        ArrayList<Yemek> sonuc = YönetimSistemi.malzemedenYemekOner(secilenMalzemeler);
+        if(sonuc.size() == 0)
+            throw new IllegalStateException();
+        if(sonuc.size() == 0){
+            Intent intent = new Intent(this, TarifBulunamadi.class);
+            startActivity(intent);
+        }
+        else {
+            Intent intent = new Intent(this, FerhatMain.class);
+            ArrayList<Integer> sonucIDleri = new ArrayList<>(sonuc.size());
+            for (int i = 0; i < sonucIDleri.size(); i++) {
+                sonucIDleri.add(sonuc.get(i).getCode());
+            }
+            intent.putExtra("aramaSonucu", sonucIDleri);
+            startActivity(intent);
+        }
     }
 
 

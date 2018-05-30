@@ -1,25 +1,33 @@
 package com.secpisir.secpisir;
 
+import android.app.Activity;
+import android.os.Bundle;
+import android.support.annotation.Nullable;
+import android.support.v7.app.AppCompatActivity;
+
+import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.PriorityQueue;
 import java.util.Random;
+import java.util.ResourceBundle;
 import java.util.Scanner;
 import java.util.Set;
 import java.util.Stack;
 
-class YönetimSistemi {
-
+public class YönetimSistemi extends AppCompatActivity {
     private static Map<String,String> kullaniciAdlari = new HashMap<>();
     private static Map<String,String> kullaniciEmailleri = new HashMap<>();
     private static Stack<Yemek> EklenenYemekler;
@@ -28,18 +36,22 @@ class YönetimSistemi {
     private static ArrayList<Icecek> icecekler;
     //private static PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
     private static ArrayList<Malzeme> malzemeler = new ArrayList<>(40);
-    private static LinkedList<String> LinkedList;
     private static Set<Kullanici> kullaniciSet = new HashSet<>();
     private static ListGraph yemeklerCizgesi = new ListGraph(50, false);
+    private static InputStream kullanicilarStream;
+    private static InputStream yemeklerStream;
 
-    YönetimSistemi() throws IOException {
-        listedenKullanicilariOku();
-        yemekler = new ArrayList<>(50);
+    YönetimSistemi() {
+        //listedenKullanicilariOku();
+        //yemekler = new ArrayList<>(50);
     }
 
     public static ArrayList<Yemek> getYemekler() {
         return yemekler;
     }
+    public static ArrayList<Malzeme> getMalzemeler() { return malzemeler; }
+    public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
+    public void setKullaniciInputStream(InputStream is){ kullanicilarStream = is; }
 
     public static Set<Kullanici> getKullaniciSet() {
         return kullaniciSet;
@@ -50,9 +62,18 @@ class YönetimSistemi {
             throw new IndexOutOfBoundsException();
         return yemekler.get(index);
     }
+    public static Malzeme getMalzeme(int index){
+        return malzemeler.get(index);
+    }
+    public static ArrayList<String> getMalzemeIsimleri(){
+        ArrayList<String> result = new ArrayList<>(malzemeler.size());
+        for (Malzeme malzeme : malzemeler) {
+            result.add(malzeme.getIsim());
+        }
+        return result;
+    }
 
-    private ArrayList<Yemek> malzemedenYemekOner(ArrayList<Yemek> yemek, ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
-
+    private static ArrayList<Yemek> malzemedenYemekOnerRecursive(ArrayList<Yemek> yemek, ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
         if(malzeme.size() < 1 )
             throw new IllegalArgumentException("Malzemenin size'ını düzgün gönder");
         ArrayList<Yemek> temp = new ArrayList<>();
@@ -65,8 +86,14 @@ class YönetimSistemi {
         malzeme.remove(malzeme.size()-1);
         if (malzeme.size() == 0)
             return yemek;
-        malzemedenYemekOner(temp,malzeme);
+        malzemedenYemekOnerRecursive(temp,malzeme);
         return temp;
+    }
+
+    public static ArrayList<Yemek> malzemedenYemekOner(ArrayList<Malzeme> secilenMalzemeler){
+        ArrayList<Yemek> result = new ArrayList<>(yemekler);
+        result = malzemedenYemekOnerRecursive(result, secilenMalzemeler);
+        return result;
     }
 
     public static Yemek RastgeleOner(){
@@ -125,25 +152,30 @@ class YönetimSistemi {
         return result;
     }
 
-    public static String listedenKullanicilariOku()throws IOException
-    {
-        /* open csv file input stream*/
-        BufferedReader reader = new BufferedReader(new FileReader("src//main//java//com//secpisir//secpisir//kullanici.csv"));
+    public static String listedenKullanicilariOku() {
+        Scanner scan = new Scanner(kullanicilarStream);
+        //BufferedInputStream is = new BufferedInputStream()
         /* read csv file line by line*/
         String line = null;
         int index = 0;
-        line = reader.readLine();
-        while ((line = reader.readLine()) != null) {
-            Scanner scanner = new Scanner(line);
-            scanner.useDelimiter(";");
-            Kullanici kullanici=new Kullanici(scanner.next(),scanner.next(),scanner.next(),scanner.next(),
-                    scanner.next(),scanner.next(), scanner.next(),scanner.next());
-            kullaniciSet.add(kullanici);
-            kullaniciAdlari.put(kullanici.getKullaniciAdi(),kullanici.getSifre());
-            kullaniciEmailleri.put(kullanici.getKullaniciAdi(),kullanici.getSifre());
+        line = scan.nextLine();
+        while (line != null) {
+            try {
+                Scanner scanner = new Scanner(line);
+                scanner.useDelimiter(";");
+                Kullanici kullanici = new Kullanici(scanner.next(), scanner.next(), scanner.next(), scanner.next(),
+                        scanner.next(), scanner.next(), scanner.next(), scanner.next());
+                kullaniciSet.add(kullanici);
+                kullaniciAdlari.put(kullanici.getKullaniciAdi(), kullanici.getSifre());
+                kullaniciEmailleri.put(kullanici.getKullaniciAdi(), kullanici.getSifre());
+                line = scan.nextLine();
+            }
+            catch(NoSuchElementException e){
+                line = null;
+            }
         }
         //close reader
-        reader.close();
+        scan.close();
         return null;
     }
 
@@ -152,7 +184,8 @@ class YönetimSistemi {
         String COMMA_DELIMITER=";";
         String SEPARATOR="\n";
         String HEADER="İsim;Soyisim;Kullanıcı Adı;Şifre;Email;Favoriler;KaraListe";
-        FileWriter filewriter= new FileWriter("src//main//java//com//secpisir//secpisir//kullanici.csv");
+        //FileWriter filewriter= new FileWriter("src//main//res//raw//kullanici.csv");
+        FileWriter filewriter= new FileWriter("kullanici.csv");
 
         filewriter.append(HEADER);
         for (Kullanici kullanici:kullaniciSet)
@@ -180,9 +213,8 @@ class YönetimSistemi {
 
     }
 
-    public static void yemekTarifleriniDosyadanOku() throws FileNotFoundException {
-        File file = new File("src/main//java//com//secpisir//secpisir//yemek.csv");
-        Scanner scanner = new Scanner(file);
+    public static void yemekTarifleriniDosyadanOku() {
+        Scanner scanner = new Scanner(yemeklerStream);
         if(scanner.hasNext())
             //Skip the csv headings
             scanner.nextLine();
@@ -200,7 +232,7 @@ class YönetimSistemi {
                 malzemeArrayList.add(malzeme);
                 if(!malzemeler.contains(malzeme)) {
                     /* Add to main ingredients list while reading from file */
-                    System.out.println("Added " + malzeme.getIsim() + " to malzemeler");
+                    //System.out.println("Added " + malzeme.getIsim() + " to malzemeler");
                     ++ingredientCode;
                     malzeme.setKod(ingredientCode);
                     malzemeler.add(malzeme);
@@ -234,6 +266,7 @@ class YönetimSistemi {
                 }
             }
         }
+        scanner.close();
         Yemek yemek = yemekler.get(18);
         Yemek yemek1 = yemekler.get(15);
         if(yemek.toString().equals("Kakaolu Islak Kek") && yemek1.toString().equals("Keşkül"))
