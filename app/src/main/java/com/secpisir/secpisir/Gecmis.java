@@ -23,7 +23,7 @@ public class Gecmis extends AppCompatActivity implements KaralisteFragment.OnFra
         final Gecmis cntx = this;
         final LinearLayout linearly = findViewById(R.id.linearLayout_gecmis);
         //frame layout oluşturuldu
-        for (int i=0;i<gecmis.size();++i)
+        for (int i=gecmis.size()-1;i>0;--i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
