@@ -42,8 +42,10 @@ public class KategorilerActivity extends AppCompatActivity {
             intent = new Intent(this, FerhatMain.class);
             intent.putExtra("aramaSonucu",kategoridenYemekler);
         }
-        else
+        else {
+            System.out.println("arama sonucu is zeor");
             intent = new Intent(this, TarifBulunamadi.class);
+        }
         startActivity(intent);
     }
 }

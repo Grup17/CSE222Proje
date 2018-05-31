@@ -113,10 +113,12 @@ public class YönetimSistemi extends AppCompatActivity {
         for (int i = 0 ;i < yemek.size() ;i ++){
             System.out.println("yemek.get(i):" + yemek.get(i) + " and malzeme " + malzeme.get(malzeme.size()-1));
             if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))){
-                if(currentKullanici != null && !currentKullanici.getKaraListe().contains(yemek.get(i).getIsim()))
+                if(currentKullanici != null && currentKullanici.getKaraListe().contains(yemek.get(i).getIsim()))
                     continue;
-                System.out.println("ture");
-                temp.add(yemek.get(i));
+                else {
+                    System.out.println("ture");
+                    temp.add(yemek.get(i));
+                }
             }
         }
         malzeme.remove(malzeme.size()-1);

@@ -10,7 +10,7 @@ public class KullaniciBilgileri extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.kullanici_bilgileri);
-        /*TextView k_adi = findViewById(R.id.kullanici_adi);
+        TextView k_adi = findViewById(R.id.kullanici_adi);
         TextView k_soyadi = findViewById(R.id.soyad);
         TextView ad = findViewById(R.id.ad);
         TextView mail = findViewById(R.id.email);
@@ -20,6 +20,6 @@ public class KullaniciBilgileri extends AppCompatActivity {
         k_adi.setText(k.getKullaniciAdi());
         ad.append(adi);
         k_soyadi.append(soyadi);
-        mail.append(k.getEmail());*/
+        mail.append(k.getEmail());
     }
 }

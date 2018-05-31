@@ -15,6 +15,8 @@ import android.widget.Toast;
 
 import java.util.ArrayList;
 
+import static java.lang.System.exit;
+
 public class MainScreen extends AppCompatActivity {
     private Toolbar toolbar;
 
@@ -81,8 +83,18 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void menudenKullaniciBilgilerine(MenuItem item){
-        Intent intent = new Intent(this, KullaniciBilgileri.class);
-        startActivity(intent);
+        Intent intent;
+        if(YönetimSistemi.getCurrentKullanici() == null)
+            Toast.makeText(getApplicationContext(),"Giriş yapmadınız" ,Toast.LENGTH_SHORT).show() ;
+        else {
+            intent = new Intent(this, KullaniciBilgileri.class);
+            startActivity(intent);
+        }
+    }
+
+    public void menudenCikisa(MenuItem item){
+        YönetimSistemi.setCurrentKullanici((Kullanici) null);
+        exit(0);
     }
     /* ------------- */
 

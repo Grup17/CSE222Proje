@@ -32,4 +32,10 @@
         android:title="@string/bilgilerim"
         android:onClick="menudenKullaniciBilgilerine"
         app:showAsAction="never"/>
+
+    <item android:id="@+id/nav_item6"
+        android:icon="@drawable/blank_avatar"
+        android:title="Çıkış"
+        android:onClick="menudenCikisa"
+        app:showAsAction="never"/>
 </menu>

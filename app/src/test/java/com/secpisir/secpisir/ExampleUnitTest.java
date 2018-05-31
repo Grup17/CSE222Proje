@@ -77,6 +77,8 @@ public class ExampleUnitTest {
             System.out.println(YönetimSistemi.getKullaniciSet().size());
             for (Object o : YönetimSistemi.getKullaniciSet()) {
                 Kullanici k = (Kullanici)o;
+                if(k.getKullaniciAdi().equals("ec") == false)
+                    continue;
                 ArrayList<Yemek> suggestions = YönetimSistemi.kullaniciyaOzelYemekOner(k);
                 System.out.println("Suggestions for " + k.getIsim()+":"
                     + suggestions);
