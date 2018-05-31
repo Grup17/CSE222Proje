@@ -170,10 +170,12 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
                         if (secilenMalzemeler.size() < 4) {
                             boolean exists = false;
                             for (int j = 0; j < secilenMalzemeler.size(); j++) {
-                                if (entry.toString().equals(secilenMalzemeler.get(i).toString()))
+                                if (entry.toString().equals(secilenMalzemeler.get(j).toString())) {
                                     Toast.makeText(searchView.getContext(), R.string.zaten_var, Toast.LENGTH_SHORT).show();
-                                exists = true;
-                                break;
+                                    exists = true;
+                                    break;
+                                }
+
                             }
 
                             if (!exists) {
@@ -199,13 +201,12 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.remove(fr);
-        for (int i = 0; i < YönetimSistemi.getMalzemeler().size(); i++) {
-            if (fr.getIngredientTextButton().getText().toString().equals(YönetimSistemi.getMalzeme(i).toString())) {
-                secilenMalzemeler.remove(YönetimSistemi.getMalzeme(i));
-                break;
-            }
-
+        for (int i = 0; i < secilenMalzemeler.size(); i++) {
+            if (secilenMalzemeler.get(i).toString().equals(fr.getIngredientTextButton().getText().toString()))
+                secilenMalzemeler.remove(i);
+            break;
         }
+
         fragmentTransaction.commit();
     }
 
