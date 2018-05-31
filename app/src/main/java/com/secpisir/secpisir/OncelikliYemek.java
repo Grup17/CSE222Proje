@@ -61,7 +61,7 @@ public class OncelikliYemek {
             if (o1.oncelik == o2.oncelik)
                 return 0;
 
-            else if (o1.oncelik > o2.oncelik)
+            else if (o1.oncelik < o2.oncelik)
                 return 1;
 
             else

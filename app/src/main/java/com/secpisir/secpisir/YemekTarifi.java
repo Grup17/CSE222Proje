@@ -3,14 +3,15 @@ package com.secpisir.secpisir;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class YemekTarifi extends AppCompatActivity {
-
     private static Yemek yemek;
 
     @Override
@@ -21,11 +22,14 @@ public class YemekTarifi extends AppCompatActivity {
         System.out.println("yemekID " + yemekID);
         yemek = YönetimSistemi.getYemek(yemekID);
         TextView tw = findViewById(R.id.textViewYemekTarifi);
+        TextView yemekadi = findViewById(R.id.yemekadi);
         if (yemek == null)
             throw new IllegalStateException();
         String content = "Kalori: " + yemek.getKalori() + "\n";
+        String yemekAdi =  yemek.getIsim();
         content += yemek.getTarif();
         tw.setText(content);
+        yemekadi.setText(yemekAdi);
     }
 
     public static void setYemek(Yemek y) {
@@ -37,6 +41,14 @@ public class YemekTarifi extends AppCompatActivity {
     public static Yemek getYemek() {
         return yemek;
     }
+    
+    public void bilgi(View view) {
+        Toast toast=Toast.makeText(getApplicationContext(),"Hazırlanış süresi: "+ yemek.getHazirlanisSuresi(),
+                Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
+    }
+
 
     public void yemegiGecmiseEkle(View view) {
         if(YönetimSistemi.getCurrentKullanici()!=null) {

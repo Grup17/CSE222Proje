@@ -159,16 +159,32 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
             public void onItemClick(AdapterView<?> parent, View view, int position,
                                     long id) {
                 Object entry = parent.getAdapter().getItem(position);
-                searchIngredient.setVisibility(View.GONE);
+                //searchIngredient.setVisibility(View.GONE);
                 FrameLayout tempLay = new FrameLayout(cntx);
                 int idNew = View.generateViewId();
                 tempLay.setId(idNew);
                 linearly.addView(tempLay);
-                addFragment(idNew, entry.toString());
                 /* --- */
                 for (int i = 0; i < YönetimSistemi.getMalzemeler().size(); i++) {
                     if(entry.toString().equals(YönetimSistemi.getMalzeme(i).toString())) {
-                        secilenMalzemeler.add(YönetimSistemi.getMalzeme(i));
+                        if (secilenMalzemeler.size() < 4) {
+                            boolean exists = false;
+                            for (int j = 0; j < secilenMalzemeler.size(); j++) {
+                                if (entry.toString().equals(secilenMalzemeler.get(i).toString()))
+                                    Toast.makeText(searchView.getContext(), R.string.zaten_var, Toast.LENGTH_SHORT).show();
+                                exists = true;
+                                break;
+                            }
+
+                            if (!exists) {
+                                secilenMalzemeler.add(YönetimSistemi.getMalzeme(i));
+                                addFragment(idNew, entry.toString());
+
+                            }
+                        }
+
+                        else
+                            Toast.makeText(searchView.getContext(), R.string.fazla_malzeme_secildi, Toast.LENGTH_SHORT).show();
                         break;
                     }
                 }
@@ -183,6 +199,13 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.remove(fr);
+        for (int i = 0; i < YönetimSistemi.getMalzemeler().size(); i++) {
+            if (fr.getIngredientTextButton().getText().toString().equals(YönetimSistemi.getMalzeme(i).toString())) {
+                secilenMalzemeler.remove(YönetimSistemi.getMalzeme(i));
+                break;
+            }
+
+        }
         fragmentTransaction.commit();
     }
 
