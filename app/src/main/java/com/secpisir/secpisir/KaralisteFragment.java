@@ -20,6 +20,7 @@ import android.widget.Button;
  */
 public class KaralisteFragment extends Fragment {
 
+    String liste;
     private Button TextButton;
     private Button CloseButton;
     private static  String BUTTON_TEXT = "ButtonText";
@@ -67,7 +68,7 @@ public class KaralisteFragment extends Fragment {
                 Intent intent = new Intent(view.getContext(), YemekTarifi.class);
                 intent.putExtra("yemekID",YönetimSistemi.getYemek(TextButton.getText().toString()));
                 startActivity(intent);
-           }
+            }
         });
         return view;
     }
@@ -107,6 +108,10 @@ public class KaralisteFragment extends Fragment {
         public void onClick(View v) {
             if (mListener != null) {
                 mListener.onFragmentClose(fr);
+                if (liste.equals("kara"))
+                    YönetimSistemi.getCurrentKullanici().getKaraListe().remove(TextButton.getText().toString());
+                else
+                    YönetimSistemi.getCurrentKullanici().getGecmis().remove(TextButton.getText().toString());
             }
 
         }
