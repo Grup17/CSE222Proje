@@ -38,9 +38,13 @@ public class YönetimSistemi extends AppCompatActivity {
     private static InputStream yemeklerStream;
     private static OutputStream kullaniciOutputStream;
 
-    private static Kullanici currentKullanici;
+    private static Kullanici currentKullanici = null;
     public static Kullanici getKullanici(){ return currentKullanici; }
     public static Kullanici getCurrentKullanici(){ return currentKullanici; }
+    public static Kullanici setCurrentKullanici(Kullanici k){
+        Kullanici temp = currentKullanici;
+        currentKullanici = null;
+        return temp; }
 
     YönetimSistemi() {    }
     YönetimSistemi(Context context) { YönetimSistemi.context = context;   }
@@ -108,8 +112,9 @@ public class YönetimSistemi extends AppCompatActivity {
         ArrayList<Yemek> temp = new ArrayList<>();
         for (int i = 0 ;i < yemek.size() ;i ++){
             System.out.println("yemek.get(i):" + yemek.get(i) + " and malzeme " + malzeme.get(malzeme.size()-1));
-            if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))
-                    && !currentKullanici.getKaraListe().contains(yemek.get(i).getIsim())){
+            if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))){
+                if(currentKullanici != null && !currentKullanici.getKaraListe().contains(yemek.get(i).getIsim()))
+                    continue;
                 System.out.println("ture");
                 temp.add(yemek.get(i));
             }
@@ -179,9 +184,13 @@ public class YönetimSistemi extends AppCompatActivity {
             Yemek yemek = yemekler.get(i);
             for (Yemek yemek1 : favorilerListesi) {
                 Edge e = yemeklerCizgesi.getEdge(yemek.getCode(), yemek1.getCode());
-                if (e != null)
+                if (e != null) {
+                    System.out.println("weight between " + yemek1 + " and " + yemek + ":" + e.getWeight());
                     oncelikler[i] += e.getWeight();
+                }
             }
+            System.out.println("total oncelik of "+ yemek.getIsim() +" " + oncelikler[i]);
+            System.out.println();
             pq.offer(new OncelikliYemek(yemek, oncelikler[i]));
         }
 
@@ -329,7 +338,7 @@ public class YönetimSistemi extends AppCompatActivity {
         int result = 0;
         for (Malzeme malzeme : first.getMalzemeler()) {
             for (Malzeme malzeme1 : second.getMalzemeler()) {
-                if(malzeme.getKod() == malzeme1.getKod())
+                if(malzeme.getIsim().equals(malzeme1.getIsim()))
                     ++result;
             }
         }
