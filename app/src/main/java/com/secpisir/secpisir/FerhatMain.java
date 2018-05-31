@@ -17,7 +17,7 @@ public class FerhatMain extends AppCompatActivity {
     private LinearLayout mDotLayout;
 
     private TextView[] mDots;
-    private ArrayList<Yemek> yemekler;
+    protected static ArrayList<Yemek> yemekler;
     private BinarySearchTree<Yemek> yemeklerBST;
 
     private SliderAdapter SliderAdapter;
