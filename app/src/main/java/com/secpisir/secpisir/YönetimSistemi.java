@@ -74,7 +74,7 @@ public class YönetimSistemi extends AppCompatActivity {
 
     public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
     public void setKullaniciInputStream(InputStream is){ kullanicilarStream = is; }
-
+   
     public static Set<Kullanici> getKullaniciSet() {
         return kullaniciSet;
     }
@@ -312,6 +312,7 @@ public class YönetimSistemi extends AppCompatActivity {
             String tarif = line.split(";")[4].replace("\\n","\n");
             yemek.setTarif(tarif);
             yemek.setTarifSuresi(line.split(";")[5]);
+            yemek.setResim(line.split(";")[6]);
             yemek.setCode(mealCode);
             yemekler.add(yemek);
             ++mealCode;
