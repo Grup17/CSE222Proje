@@ -63,6 +63,8 @@ public class Yemek extends Tüketilebilir implements Comparable<Yemek> {
         return code;
     }
 
+    public String getHazirlanisSuresi(){return hazirlanisSuresi;}
+
     public void setTarif(String hazirlanis) {
         this.hazirlanis = hazirlanis;
     }
