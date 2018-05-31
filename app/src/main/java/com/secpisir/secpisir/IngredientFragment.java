@@ -92,7 +92,6 @@ public class IngredientFragment extends Fragment {
 
 
     }
-
     @Override
     public void onDetach() {
         super.onDetach();
