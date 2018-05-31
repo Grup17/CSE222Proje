@@ -1,18 +1,19 @@
 package com.secpisir.secpisir;
 
 
+import android.content.Intent;
+
 import java.io.IOException;
 import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Stack;
 
-import static com.secpisir.secpisir.YönetimSistemi.listeyeKullanicilariYaz;
 
 public class Kullanici {
 
     private BinarySearchTree<String> favoriler;
-    private BinarySearchTree<String>  karaListe;
+    private BinarySearchTree<String> karaListe;
     private Stack<String> gecmis= new Stack<>();
     private boolean girisYapildi = false;
     private String kullaniciAdi;
@@ -38,19 +39,21 @@ public class Kullanici {
         if (favoriler.contains(yemek))
             return false;
         Boolean check = karaListe.add(yemek);
-        try {
-            listeyeKullanicilariYaz();
+        /*try {
+            Intent intent = new Intent();
+            //YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            //yönetimSistemi.listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
-        }
+        }*/
         return check;
     }
 
     public boolean karaListedenCıkar(String yemek) {
         Boolean check=karaListe.remove(yemek);
         try {
-            listeyeKullanicilariYaz();
-        } catch (IOException e) {
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            YönetimSistemi.listeyeKullanicilariYaz();        } catch (IOException e) {
             return false;
         }
         return check;
@@ -60,19 +63,19 @@ public class Kullanici {
         if (karaListe.contains(yemek))
             return false;
         Boolean check=favoriler.add(yemek);
-        try {
+        /*try {
             listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
-        }
+        }*/
         return check;
     }
     //
     public boolean favorilerdenCıkar(String yemek) {
         Boolean check=favoriler.remove(yemek);
         try {
-            listeyeKullanicilariYaz();
-        } catch (IOException e) {
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            YönetimSistemi.listeyeKullanicilariYaz();        } catch (IOException e) {
             return false;
         }
         return check;
@@ -80,20 +83,20 @@ public class Kullanici {
 
     boolean gecmiseEkle(String yemek){
         Boolean check=gecmis.add(yemek);
-        try {
-            listeyeKullanicilariYaz();
-        } catch (IOException e) {
+        /*try {
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            yönetimSistemi.listeyeKullanicilariYaz();        } catch (IOException e) {
             return false;
-        }
+        }*/
         return check;
     }
     boolean gecmistenSil(String yemek){
         Boolean check=gecmis.remove(yemek);
-        try {
-            listeyeKullanicilariYaz();
-        } catch (IOException e) {
+        /*try {
+            YönetimSistemi yönetimSistemi = new YönetimSistemi();
+            yönetimSistemi.listeyeKullanicilariYaz();        } catch (IOException e) {
             return false;
-        }
+        }*/
         return check;
     }
     public String getListe(AbstractList<String> liste){

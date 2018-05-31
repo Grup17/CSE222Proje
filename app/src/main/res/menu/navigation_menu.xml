@@ -26,4 +26,10 @@
         android:title="@string/gecmis"
         android:onClick="menudenGecmise"
         app:showAsAction="always"/>
+
+    <item android:id="@+id/nav_item5"
+        android:icon="@drawable/blank_avatar"
+        android:title="@string/bilgilerim"
+        android:onClick="menudenKullaniciBilgilerine"
+        app:showAsAction="never"/>
 </menu>

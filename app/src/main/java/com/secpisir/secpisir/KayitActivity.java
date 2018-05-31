@@ -21,13 +21,13 @@ public class KayitActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_kayit);
-        kayit = (Button) findViewById(R.id.button_kayit_ol);
-        isim_edit = (EditText) findViewById(R.id.edit_ad);
-        soyad_edit = (EditText) findViewById(R.id.edit_soyad);
-        mail_edit = (EditText) findViewById(R.id.edit_email);
-        sifre_edit = (EditText) findViewById(R.id.edit_sifre);
-        sifre_tekrar_edit = (EditText) findViewById(R.id.edit_sifre_tekrar);
-        kullanici_adi_edit = (EditText) findViewById(R.id.edit_kullaniciadi);
+        kayit = findViewById(R.id.button_kayit_ol);
+        isim_edit = findViewById(R.id.edit_ad);
+        soyad_edit = findViewById(R.id.edit_soyad);
+        mail_edit = findViewById(R.id.edit_email);
+        sifre_edit = findViewById(R.id.edit_sifre);
+        sifre_tekrar_edit = findViewById(R.id.edit_sifre_tekrar);
+        kullanici_adi_edit = findViewById(R.id.edit_kullaniciadi);
 
         kayit.setOnClickListener(new View.OnClickListener() {//Kayıt ol butonuna tıklanınca
             @Override
@@ -44,10 +44,10 @@ public class KayitActivity extends Activity {
                 kullanici_adi = kullanici_adi_edit.getText().toString();
 
 
-                YönetimSistemi yönetimSistemi=new YönetimSistemi(getApplicationContext());
+                YönetimSistemi yönetimSistemi=new YönetimSistemi();
                 yönetimSistemi.setKullaniciInputStream(getResources().openRawResource(R.raw.kullanici));
                 yönetimSistemi.setYemekInputStream(getResources().openRawResource(R.raw.yemek));
-                yönetimSistemi.listedenKullanicilariOku();
+                YönetimSistemi.listedenKullanicilariOku();
 
 
                 if(kullanici_adi.length()<3 || kullanici_adi.contains("/")|| kullanici_adi.contains("\\")
@@ -58,7 +58,7 @@ public class KayitActivity extends Activity {
                     hata=true;
                     hata_mesaji="Kullanıcı adı uzunluğu en az 3 karakter içermeli ve geçersiz karakterler içermemeli.";
                 }
-                else if (yönetimSistemi.kullaniciAdlari.containsKey(kullanici_adi)){
+                else if (YönetimSistemi.kullaniciAdlari.containsKey(kullanici_adi)){
                     hata=true;
                     hata_mesaji="Bu kullanıcı adı daha önceden alınmış.";
                 }
@@ -80,9 +80,9 @@ public class KayitActivity extends Activity {
                 else
                 {
                    Kullanici yeni=new Kullanici( isim,  soyad,  kullanici_adi,  sifre,  mail,"",  "","");
-                   yönetimSistemi.kullaniciSet.add(yeni);
+                   YönetimSistemi.kullaniciSet.add(yeni);
                     try {
-                        yönetimSistemi.listeyeKullanicilariYaz();
+                        YönetimSistemi.listeyeKullanicilariYaz();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -92,10 +92,8 @@ public class KayitActivity extends Activity {
         });
     }
     private boolean isEmailValid(String mail) {
-        if(mail.endsWith("@gmail.com")|| mail.endsWith("@hotmail.com") ||
-                mail.endsWith("@outlook.com") || mail.endsWith("@gtu.edu.tr"))
-            return true;
-        else return false;
+        return mail.endsWith("@gmail.com") || mail.endsWith("@hotmail.com") ||
+                mail.endsWith("@outlook.com") || mail.endsWith("@gtu.edu.tr");
     }
     public void kayit(View view){
         Intent intent = new Intent(this, MainScreen.class);

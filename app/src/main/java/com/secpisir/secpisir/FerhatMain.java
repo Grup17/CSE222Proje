@@ -30,7 +30,7 @@ public class FerhatMain extends AppCompatActivity {
         System.out.println("yemek kodlari: " + yemekKodlari);
         yemekler = new ArrayList<>(yemekKodlari.size());
         for (int i = 0; i < yemekKodlari.size(); i++) {
-            yemekler.add(YönetimSistemi.getYemek(i));
+            yemekler.add(YönetimSistemi.getYemek(yemekKodlari.get(i)));
         }
         System.out.println("ferhat yemekler: " + yemekler);
 

@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MenuTest" />
         <activity android:name=".KayitActivity" />
         <activity
@@ -32,14 +32,15 @@
         <activity android:name=".TarifEkle" />
         <activity
             android:name=".IngredientActivity"
-            android:windowSoftInputMode="stateVisible|adjustNothing"
-            android:theme="@style/Theme.AppCompat.Light" />
+            android:theme="@style/Theme.AppCompat.Light"
+            android:windowSoftInputMode="stateVisible|adjustNothing" />
         <activity android:name=".FerhatMain" />
         <activity android:name=".Gecmis" />
         <activity android:name=".YemekTarifi" />
         <activity android:name=".KategorilerActivity" />
-        <activity android:name=".YönetimSistemi"/>
-        <activity android:name=".TarifBulunamadi"></activity>
+        <activity android:name=".YönetimSistemi" />
+        <activity android:name=".TarifBulunamadi" />
+        <activity android:name=".KullaniciBilgileri"></activity>
     </application>
 
 </manifest>

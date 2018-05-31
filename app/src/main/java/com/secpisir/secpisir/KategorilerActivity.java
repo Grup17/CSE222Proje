@@ -22,7 +22,7 @@ public class KategorilerActivity extends AppCompatActivity {
                 kategoridenYemekler = YönetimSistemi.kategoridenYemekIDleri("Çorba");
                 break;
             case(R.id.butonanayemek):
-                kategoridenYemekler = YönetimSistemi.kategoridenYemekIDleri("Ana yemek");
+                kategoridenYemekler = YönetimSistemi.kategoridenYemekIDleri("Ana Yemek");
                 break;
             case(R.id.butonarayemek):
                 kategoridenYemekler = YönetimSistemi.kategoridenYemekIDleri("Ara Yemek");

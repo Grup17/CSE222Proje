@@ -31,6 +31,8 @@ public class YönetimSistemi extends AppCompatActivity {
     //private static PriorityQueue<Malzeme> SıkKullanılanlar;// heap;
     private static ArrayList<Malzeme> malzemeler = new ArrayList<>(40);
     static Set<Kullanici> kullaniciSet = new HashSet<>();
+    //TODO: remove below
+    //public static ArrayList<Kullanici> kullanicilar;
     private static ListGraph yemeklerCizgesi = new ListGraph(50, false);
     private static InputStream kullanicilarStream;
     private static InputStream yemeklerStream;
@@ -203,6 +205,7 @@ public class YönetimSistemi extends AppCompatActivity {
                 Kullanici kullanici = new Kullanici(scanner.next(), scanner.next(), scanner.next(), scanner.next(),
                         scanner.next(), scanner.next(), scanner.next(), scanner.next());
                 kullaniciSet.add(kullanici);
+                System.out.println("added " + kullanici.getIsim() + " to set");
                 kullaniciAdlari.put(kullanici.getKullaniciAdi(), kullanici.getSifre());
                 kullaniciEmailleri.put(kullanici.getKullaniciAdi(), kullanici.getSifre());
                 line = scan.nextLine();
@@ -288,7 +291,8 @@ public class YönetimSistemi extends AppCompatActivity {
             yemek.setMalzemeler(malzemeArrayList);
             yemek.setKategori(line.split(";")[2]);
             yemek.setKalori(Integer.parseInt(line.split(";")[3]));
-            yemek.setTarif(line.split(";")[4]);
+            String tarif = line.split(";")[4].replace("\\n","\n");
+            yemek.setTarif(tarif);
             yemek.setTarifSuresi(line.split(";")[5]);
             yemek.setCode(mealCode);
             yemekler.add(yemek);

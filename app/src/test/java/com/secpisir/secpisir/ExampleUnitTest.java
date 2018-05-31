@@ -73,6 +73,8 @@ public class ExampleUnitTest {
             yönetimSistemi.setKullaniciInputStream(kullanici);
             yönetimSistemi.setYemekInputStream(yemek);
             YönetimSistemi.yemekTarifleriniDosyadanOku();
+            YönetimSistemi.listedenKullanicilariOku();
+            System.out.println(YönetimSistemi.getKullaniciSet().size());
             for (Object o : YönetimSistemi.getKullaniciSet()) {
                 Kullanici k = (Kullanici)o;
                 ArrayList<Yemek> suggestions = YönetimSistemi.kullaniciyaOzelYemekOner(k);
@@ -124,5 +126,9 @@ public class ExampleUnitTest {
         yönetimSistemi.setKullaniciInputStream(kullanici);
         yönetimSistemi.setYemekInputStream(yemek);
         YönetimSistemi.yemekTarifleriniDosyadanOku();
+    }
+
+    @Test
+    public void priorityQueue(){
     }
 }

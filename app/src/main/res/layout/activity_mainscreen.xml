@@ -30,41 +30,57 @@
             android:layout_marginTop="15dp"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="58dp" /> -->
-    <Button
-        android:id="@+id/button5"
-        android:layout_width="245dp"
-        android:layout_height="73dp"
 
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="32dp"
-        android:fontFamily="casual"
-        android:text="@string/kategori"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        android:onClick="anaEkrandanKategorilere"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/button2"
-        app:layout_constraintVertical_bias="0.0" />
+        <Button
+            android:layout_width="245dp"
+            android:layout_height="wrap_content"
+            android:text="BANA ÖZEL"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:fontFamily="casual"
+            android:onClick="anaEkrandanKullaniciyaOzele"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button5"/>
 
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="245dp"
-        android:layout_height="72dp"
-        android:onClick="anaEkrandanRastgeleye"
-        android:layout_marginTop="16dp"
-        android:fontFamily="casual"
-        android:text="@string/rastgele"
-        android:textAllCaps="false"
-        android:textColor="@color/black"
-        android:textSize="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton" />
+        <Button
+            android:id="@+id/button5"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+
+            android:layout_marginBottom="8dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="casual"
+            android:onClick="anaEkrandanKategorilere"
+            android:text="@string/kategori"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="245dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="16dp"
+            android:fontFamily="casual"
+            android:onClick="anaEkrandanRastgeleye"
+            android:text="RASTGELE"
+            android:textAllCaps="false"
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.503"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageButton" />
 
         <Button
             android:id="@+id/imageButton"

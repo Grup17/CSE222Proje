@@ -22,10 +22,6 @@ public class MainScreen extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_mainscreen);
-        NavigationView navigationView = findViewById(R.id.menuNavigationView);
-        if (navigationView != null) {
-            navigationView.setItemIconTintList(null);
-        }
         //toolbar = (Toolbar) findViewById(R.id.tool_bar);
         //setSupportActionBar(toolbar);
 
@@ -83,6 +79,11 @@ public class MainScreen extends AppCompatActivity {
                     " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
         }
     }
+
+    public void menudenKullaniciBilgilerine(MenuItem item){
+        Intent intent = new Intent(this, KullaniciBilgileri.class);
+        startActivity(intent);
+    }
     /* ------------- */
 
     public void anaEkrandanAramaya(View view) {
@@ -98,5 +99,24 @@ public class MainScreen extends AppCompatActivity {
 
     public void anaEkrandanRastgeleye(View view) {
         setContentView(R.layout.rastgele);
+    }
+
+    public void anaEkrandanKullaniciyaOzele(View view){
+        ArrayList<Yemek> oneri = YönetimSistemi.kullaniciyaOzelYemekOner(YönetimSistemi.getCurrentKullanici());
+        ArrayList<Integer> oneriIDleri = new ArrayList<>(50);
+        System.out.println("önerilen yemekler: " + oneri);
+        Intent intent;
+        for (Yemek yemek : oneri) {
+            oneriIDleri.add(yemek.getCode());
+        }
+        System.out.println("önerilen yemek IDleri: " + oneriIDleri);
+        if(oneri.size() == 0)
+            intent = new Intent(this, TarifBulunamadi.class);
+        else{
+            intent = new Intent(this, FerhatMain.class);
+            intent.putExtra("aramaSonucu", oneriIDleri);
+        }
+        startActivity(intent);
+
     }
 }

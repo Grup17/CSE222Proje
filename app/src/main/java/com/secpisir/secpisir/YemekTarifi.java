@@ -50,7 +50,7 @@ public class YemekTarifi extends AppCompatActivity {
     public void yemegiFavorilereEkle(View view) {
         if(YönetimSistemi.getCurrentKullanici()!=null) {
             Kullanici k = YönetimSistemi.getKullanici();
-            //k.favorilereEkle(yemek.getIsim());
+            k.favorilereEkle(yemek.getIsim());
             Toast.makeText(getApplicationContext(), "Favorilere eklendi",Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
@@ -61,7 +61,7 @@ public class YemekTarifi extends AppCompatActivity {
     public void yemegiKaralisteyeEkle(View view){
         if(YönetimSistemi.getCurrentKullanici()!=null) {
             Kullanici k = YönetimSistemi.getKullanici();
-          //  k.karaListeyeEkle(yemek.getIsim());
+            k.karaListeyeEkle(yemek.getIsim());
             Toast.makeText(getApplicationContext(), "Kara listeye eklendi",Toast.LENGTH_LONG).show();
         }else{
             Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
