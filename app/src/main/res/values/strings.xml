@@ -43,4 +43,6 @@
     <string name="title_notifications">Notifications</string>
     <string name="yemek_bulunamadi">Bu tarifte yemek bulunamadı.</string>
     <string name="bilgilerim">Bilgilerim</string>
+    <string name="fazla_malzeme_secildi">Çok fazla malzeme seçmeye çalışıyorsunuz</string>
+    <string name="zaten_var">Seçtiğiniz malzeme zaten arama listesinde</string>
 </resources>
