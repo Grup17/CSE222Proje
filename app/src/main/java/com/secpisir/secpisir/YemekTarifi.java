@@ -37,6 +37,13 @@ public class YemekTarifi extends AppCompatActivity {
     public static Yemek getYemek() {
         return yemek;
     }
+    
+    public void bilgi(View view) {
+        Toast toast=Toast.makeText(getApplicationContext(),"Hazırlanış süresi: "+ yemek.getHazirlanisSuresi(),
+                Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER_VERTICAL|Gravity.CENTER_HORIZONTAL, 0, 0);
+        toast.show();
+    }
 
     public void yemegiGecmiseEkle(View view) {
         if(YönetimSistemi.getCurrentKullanici()!=null) {
