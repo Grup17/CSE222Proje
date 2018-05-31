@@ -96,7 +96,6 @@ public class FavorilerFragment extends Fragment {
         // TODO: Update argument type and name
         void onFragmentClose(FavorilerFragment fr);
     }
-
     class FragmentClickListener implements View.OnClickListener {
         FavorilerFragment fr;
         FragmentClickListener(FavorilerFragment fr) {
@@ -106,6 +105,7 @@ public class FavorilerFragment extends Fragment {
         public void onClick(View v) {
             if (mListener != null) {
                 mListener.onFragmentClose(fr);
+                YönetimSistemi.getCurrentKullanici().getFavoriListe().remove(TextButton.getText().toString());
             }
 
         }
