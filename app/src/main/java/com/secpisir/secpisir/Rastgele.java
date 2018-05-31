@@ -37,7 +37,13 @@ public class Rastgele extends Activity {
             //k.favorilereEkle(yemek.getIsim());
             Toast.makeText(getApplicationContext(), yemek +" Favorilere eklendi",Toast.LENGTH_LONG).show();
         }
-        else if(YönetimSistemi.getCurrentKullanici().getFavoriListe().contains(yemek)){
+        else if(YönetimSistemi.getCurrentKullanici()!=null &&
+                YönetimSistemi.getCurrentKullanici().getKaraListe().contains(yemek)) {
+            Toast.makeText(getApplicationContext(), yemek +" Eklemek istediğiniz yemek "+
+                    "kara listenizde mevcut!Eklenemedi...",Toast.LENGTH_LONG).show();
+        }
+        else if(YönetimSistemi.getCurrentKullanici()!=null&&
+                YönetimSistemi.getCurrentKullanici().getFavoriListe().contains(yemek)){
             Toast.makeText(getApplicationContext(), "Eklemek istediğiniz yemek"+
                     " zaten favorilerinizde mevcut.",Toast.LENGTH_SHORT).show();
         }
@@ -54,7 +60,13 @@ public class Rastgele extends Activity {
             //  k.karaListeyeEkle(yemek.getIsim());
             Toast.makeText(getApplicationContext(), "Kara listeye eklendi",Toast.LENGTH_LONG).show();
         }
-        else if(YönetimSistemi.getCurrentKullanici().getKaraListe().contains(yemek)){
+        else if(YönetimSistemi.getCurrentKullanici()!=null &&
+                YönetimSistemi.getCurrentKullanici().getFavoriListe().contains(yemek)) {
+            Toast.makeText(getApplicationContext(), yemek +" Eklemek istediğiniz yemek "+
+                    "favorilerinizde mevcut.Eklenemedi...!",Toast.LENGTH_LONG).show();
+        }
+        else if(YönetimSistemi.getCurrentKullanici()!=null &&
+                YönetimSistemi.getCurrentKullanici().getKaraListe().contains(yemek)){
             Toast.makeText(getApplicationContext(), "Eklemek istediğiniz yemek"+
                     " zaten kara listede mevcut.",Toast.LENGTH_SHORT).show();
         }
