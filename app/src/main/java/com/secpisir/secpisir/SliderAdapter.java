@@ -11,6 +11,8 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import java.util.ArrayList;
+
 public class SliderAdapter extends PagerAdapter {
 
     int sliderSize;
@@ -31,7 +33,7 @@ public class SliderAdapter extends PagerAdapter {
     }
 
     public String[] slide_headings={"YEMEĞİN ADI","YEMEĞİN ADI","YEMEĞİN ADI"};
-    public String[] slide_decripsions={"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."};
+   // public String[] slide_decripsions={"Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.","Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit."};
 
     @Override
     public int getCount() {
@@ -43,9 +45,9 @@ public class SliderAdapter extends PagerAdapter {
         return view == object;
     }
 
-    public void setSlideDescriptions(String[] strings){
+   /*    public void setSlideDescriptions(String[] strings){
         slide_decripsions = strings;
-    }
+    }*/
 
     public void setSlideHeading(String[] strings){
         slide_headings = strings;
@@ -65,7 +67,10 @@ public class SliderAdapter extends PagerAdapter {
 
         slideImageView.setImageResource(slide_images[position]);
         slide_head.setText(slide_headings[position]);
-        slide_decs.setText(slide_decripsions[position]);
+
+        Yemek yemek=YönetimSistemi.getYemek(YönetimSistemi.getYemek(slide_headings[position]));
+
+        slide_decs.setText(yemek.getMalzemelerString());
 
         container.addView(view);
 
