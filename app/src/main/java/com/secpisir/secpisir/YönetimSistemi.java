@@ -104,16 +104,19 @@ public class YönetimSistemi extends AppCompatActivity {
     private static ArrayList<Yemek> malzemedenYemekOnerRecursive(ArrayList<Yemek> yemek, ArrayList<Malzeme> malzeme) throws IllegalArgumentException{
         if(malzeme.size() < 1 )
             throw new IllegalArgumentException("Malzemenin size'ını düzgün gönder");
+        System.out.println("Gelen malzemeler:" + malzeme);
         ArrayList<Yemek> temp = new ArrayList<>();
         for (int i = 0 ;i < yemek.size() ;i ++){
+            System.out.println("yemek.get(i):" + yemek.get(i) + " and malzeme " + malzeme.get(malzeme.size()-1));
             if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))){
+                System.out.println("ture");
                 temp.add(yemek.get(i));
             }
         }
         malzeme.remove(malzeme.size()-1);
         if (malzeme.size() == 0)
-            return yemek;
-        malzemedenYemekOnerRecursive(temp,malzeme);
+            return temp;
+        temp = malzemedenYemekOnerRecursive(temp,malzeme);
         return temp;
     }
 
@@ -277,14 +280,17 @@ public class YönetimSistemi extends AppCompatActivity {
                 if(!malzemeler.contains(malzeme)) {
                     /* Add to main ingredients list while reading from file */
                     //System.out.println("Added " + malzeme.getIsim() + " to malzemeler");
-                    ++ingredientCode;
                     malzeme.setKod(ingredientCode);
+                        System.out.println("NOT CONTAINS ADDED " + malzeme.getIsim()+ " with id " + malzeme.getKod());
                     malzemeler.add(malzeme);
+                    System.out.println(malzemeler);
+                    ++ingredientCode;
 
                 }
                 else {
-                    int existingMealCode = malzemeler.indexOf(malzeme);
-                    malzeme.setKod(existingMealCode);
+                    //int existingMealCode = malzemeler.indexOf(malzeme)-1;
+                    //    System.out.println("ADDED " + malzeme.getIsim() + " with id " + malzeme.getKod());
+                    //malzeme.setKod(existingMealCode);
                 }
             }
             yemek.setIsim(line.split(";")[0]);

@@ -96,10 +96,7 @@ public class ExampleUnitTest {
             yönetimSistemi.setYemekInputStream(yemek);
             YönetimSistemi.yemekTarifleriniDosyadanOku();
             ArrayList<Malzeme> malzemes = new ArrayList<>(2);
-            malzemes.add(YönetimSistemi.getMalzeme(0));
-            malzemes.add(YönetimSistemi.getMalzeme(1));
-            malzemes.add(YönetimSistemi.getMalzeme(2));
-            malzemes.add(YönetimSistemi.getMalzeme(3));
+            malzemes.add(YönetimSistemi.getMalzeme(30));
             ArrayList<Yemek> sonuc = YönetimSistemi.malzemedenYemekOner(malzemes);
             System.out.println(sonuc);
         }

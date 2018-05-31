@@ -27,6 +27,7 @@ public class Malzeme {
     public boolean equals(Object obj) {
         if(!(obj instanceof Malzeme))
             return false;
+        //System.out.println("malzeme equals called, " + isim + " equals " + ((Malzeme) obj).isim +": " + isim.equals(((Malzeme)obj).isim));
         return isim.equals(((Malzeme)obj).isim);
     }
 
