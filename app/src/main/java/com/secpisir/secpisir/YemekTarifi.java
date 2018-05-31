@@ -55,7 +55,7 @@ public class YemekTarifi extends AppCompatActivity {
                 !YönetimSistemi.getCurrentKullanici().getKaraListe().contains(yemek.getIsim())) {
             YönetimSistemi.getCurrentKullanici().getFavoriListe().add(yemek.getIsim());
             //k.favorilereEkle(yemek.getIsim());
-            Toast.makeText(getApplicationContext(), "Favorilere eklendi",Toast.LENGTH_LONG).show();
+            Toast.makeText(getApplicationContext(), yemek.getIsim() +" Favorilere eklendi",Toast.LENGTH_LONG).show();
         }
         else if(YönetimSistemi.getCurrentKullanici().getFavoriListe().contains(yemek.getIsim())){
             Toast.makeText(getApplicationContext(), "Eklemek istediğiniz yemek"+

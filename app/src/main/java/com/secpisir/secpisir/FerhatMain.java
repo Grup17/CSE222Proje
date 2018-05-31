@@ -93,7 +93,7 @@ public class FerhatMain extends AppCompatActivity {
 
     public void yemekTarifineGec(View view){
         Intent intent = new Intent(this, YemekTarifi.class);
-        intent.putExtra("yemekID",mSlideViewPager.getCurrentItem());
+        intent.putExtra("yemekID",yemekler.get( mSlideViewPager.getCurrentItem() ).getCode());
         startActivity(intent);
     }
 }
