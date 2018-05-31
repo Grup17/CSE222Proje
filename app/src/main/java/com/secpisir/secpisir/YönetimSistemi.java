@@ -108,7 +108,8 @@ public class YönetimSistemi extends AppCompatActivity {
         ArrayList<Yemek> temp = new ArrayList<>();
         for (int i = 0 ;i < yemek.size() ;i ++){
             System.out.println("yemek.get(i):" + yemek.get(i) + " and malzeme " + malzeme.get(malzeme.size()-1));
-            if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))){
+            if(yemek.get(i).containsMalzeme(malzeme.get(malzeme.size()-1))
+                    && !currentKullanici.getKaraListe().contains(yemek.get(i).getIsim())){
                 System.out.println("ture");
                 temp.add(yemek.get(i));
             }
