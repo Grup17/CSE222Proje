@@ -34,6 +34,7 @@ import java.util.Arrays;
 
 public class IngredientActivity extends AppCompatActivity implements IngredientFragment.OnFragmentInteractionListener {
 
+    LinearLayout basket;
     SearchView searchView;
     ListView searchIngredient;
     ArrayAdapter<String> adapter;
@@ -72,6 +73,8 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
 
         searchIngredient.setAdapter(adapter);
         //addFragment(R.id.ingredient_container);
+
+        basket = (LinearLayout) findViewById(R.id.basket_linear_layout);
     }
 
 
@@ -211,6 +214,15 @@ public class IngredientActivity extends AppCompatActivity implements IngredientF
     }
 
     public void yemekOnerisineGec(View view){
+        if (secilenMalzemeler.size() == 0) {
+            Toast.makeText(view.getContext(), R.string.malzemeler_bos, Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+
+        if (basket.getChildCount() > 0)
+            basket.removeAllViews();
+
         System.out.println("secilen malzemeler:" + secilenMalzemeler);
         ArrayList<Yemek> sonuc = YönetimSistemi.malzemedenYemekOner(secilenMalzemeler);
         if(sonuc.size() == 0){

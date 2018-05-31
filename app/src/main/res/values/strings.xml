@@ -45,4 +45,5 @@
     <string name="bilgilerim">Bilgilerim</string>
     <string name="fazla_malzeme_secildi">Çok fazla malzeme seçmeye çalışıyorsunuz</string>
     <string name="zaten_var">Seçtiğiniz malzeme zaten arama listesinde</string>
+    <string name="malzemeler_bos">Malzeme listesi boş olamaz</string>
 </resources>
