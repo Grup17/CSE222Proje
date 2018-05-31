@@ -156,7 +156,7 @@ public class YönetimSistemi extends AppCompatActivity {
         ArrayList<Yemek> favorilerListesi = new ArrayList<>(30);
         ArrayList<Yemek> result = new ArrayList<>(20);
         String[] favoriler = kullanici.getFavoriListe().toString().split("-");
-        for (String s: kullanici.getFavoriListe()) {
+        for (String s: favoriler) {
             for (Yemek yemek : yemekler) {
                 if(s.equals(yemek.getIsim())) {
                     //System.out.println("adding " + yemek);
