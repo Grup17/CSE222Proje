@@ -9,18 +9,18 @@
     tools:context=".YemekTarifi">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/yemekadi"
         android:layout_width="221dp"
-        android:layout_height="30dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="18dp"
-        android:textSize="28sp"
-        android:gravity="center"
-        android:textColor="@color/colorWhite"
+        android:layout_marginTop="20dp"
         android:cursorVisible="false"
+        android:gravity="center"
         android:text="YEMEK ADI"
-        android:textColorLink="@color/colorWhite" />
+        android:textColor="#000000"
+        android:textColorLink="#000000"
+        android:textSize="28sp" />
 
     <Button
         android:id="@+id/button2"
