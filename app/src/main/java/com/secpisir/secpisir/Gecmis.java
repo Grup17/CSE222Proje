@@ -45,6 +45,7 @@ public class Gecmis extends AppCompatActivity implements KaralisteFragment.OnFra
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         KaralisteFragment kara =  KaralisteFragment.newInstance(text);
+        kara.liste = "gecmis";
         fragmentTransaction.add(id,kara);
         fragmentTransaction.commit();
     }
