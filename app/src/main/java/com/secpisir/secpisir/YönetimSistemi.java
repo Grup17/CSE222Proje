@@ -14,6 +14,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.NoSuchElementException;
+import java.util.PriorityQueue;
 import java.util.Random;
 import java.util.Scanner;
 import java.util.Set;
@@ -57,6 +58,12 @@ public class YönetimSistemi extends AppCompatActivity {
                 currentKullanici=kullanici;
                 break;
             }
+    }
+    public static int getYemek(String isim){
+        for(Yemek yemek:yemekler)
+            if (yemek.getIsim().equals(isim))
+                return yemek.getCode();
+        return -1;
     }
 
     public void setYemekInputStream(InputStream is){ yemeklerStream = is;}
@@ -148,7 +155,8 @@ public class YönetimSistemi extends AppCompatActivity {
     public static ArrayList<Yemek> kullaniciyaOzelYemekOner(Kullanici kullanici){
         ArrayList<Yemek> favorilerListesi = new ArrayList<>(30);
         ArrayList<Yemek> result = new ArrayList<>(20);
-        for (String s: kullanici.getFavoriListe()) {
+        String[] favoriler = kullanici.getFavoriListe().toString().split("-");
+        for (String s: favoriler) {
             for (Yemek yemek : yemekler) {
                 if(s.equals(yemek.getIsim())) {
                     //System.out.println("adding " + yemek);
@@ -158,17 +166,28 @@ public class YönetimSistemi extends AppCompatActivity {
                 //System.out.println(s + "was not equal to " + yemek.getIsim());
             }
         }
-        for (Yemek yemek : yemekler) {
+        PriorityQueue<OncelikliYemek> pq = new PriorityQueue<>(yemekler.size(), OncelikliYemek.getComparator());
+        int[] oncelikler = new int[yemekler.size()];
+
+        for (int i = 0; i < yemekler.size(); i++) {
+            Yemek yemek = yemekler.get(i);
             for (Yemek yemek1 : favorilerListesi) {
                 Edge e = yemeklerCizgesi.getEdge(yemek.getCode(), yemek1.getCode());
-                if(e != null && e.getWeight() >= 2)
-                    //TODO: use priority queue to determine suggestion priority
-                    if(!result.contains(yemek))
-                        result.add(yemek);
+                if (e != null)
+                    oncelikler[i] += e.getWeight();
             }
+            pq.offer(new OncelikliYemek(yemek, oncelikler[i]));
         }
+
+        while (!pq.isEmpty()) {
+            OncelikliYemek polledYemek = pq.poll();
+            if (!result.contains(polledYemek.yemek))
+                result.add(polledYemek.yemek);
+        }
+
         return result;
     }
+
 
     public static String listedenKullanicilariOku() {
         Scanner scan = new Scanner(kullanicilarStream);
@@ -203,7 +222,7 @@ public class YönetimSistemi extends AppCompatActivity {
 
     public static boolean listeyeKullanicilariYaz()throws IOException
     {
-        FileOutputStream fos = context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
+        FileOutputStream fos =context.openFileOutput(String.valueOf(R.raw.kullanici), Context.MODE_PRIVATE);
         String COMMA_DELIMITER=";";
         byte comma[]=COMMA_DELIMITER.getBytes();
         String SEPARATOR="\n";
@@ -225,9 +244,9 @@ public class YönetimSistemi extends AppCompatActivity {
             fos.write(comma);
             fos.write(kullanici.getEmail().getBytes());
             fos.write(comma);
-            fos.write(kullanici.getListe(kullanici.getFavoriListe()).getBytes());
+            fos.write(kullanici.getFavoriListe().toString().getBytes());
             fos.write(comma);
-            fos.write(kullanici.getListe(kullanici.getKaraListe()).getBytes());
+            fos.write(kullanici.getKaraListe().toString().getBytes());
             fos.write(comma);
             fos.write(kullanici.getListe(kullanici.getGecmis()).getBytes());
         }
@@ -235,7 +254,6 @@ public class YönetimSistemi extends AppCompatActivity {
         fos.close();
         return true;
     }
-
     public static void yemekTarifleriniDosyadanOku() {
         Scanner scanner = new Scanner(yemeklerStream);
         if(scanner.hasNext())

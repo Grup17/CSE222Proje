@@ -1,6 +1,7 @@
 package com.secpisir.secpisir;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -43,12 +44,24 @@ public class FavorilerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.favoriler_fragment, container, false);
+        final View view = inflater.inflate(R.layout.favoriler_fragment, container, false);
 
         TextButton = view.findViewById(R.id.text_button);
         CloseButton = view.findViewById(R.id.close_button);
         CloseButton.setOnClickListener(new FragmentClickListener(this));
         TextButton.setText(getArguments().getString(BUTTON_TEXT));
+
+        TextButton.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                //Start your activity here
+                Intent intent = new Intent(view.getContext(), YemekTarifi.class);
+                intent.putExtra("yemekID",YönetimSistemi.getYemek(TextButton.getText().toString()));
+                startActivity(intent);
+            }
+        });
         return view;
     }
 

@@ -11,6 +11,7 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -41,20 +42,46 @@ public class MainScreen extends AppCompatActivity {
 
     /* ------Menu Onclicks------- */
     public void menudenKaralisteye(MenuItem item) {
-        Intent intent = new Intent(this, Karaliste.class);
-        startActivity(intent);
+        if(YönetimSistemi.getCurrentKullanici()!=null)
+        {
+            Intent intent = new Intent(this, Karaliste.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
     }
     public void menudenFavorilere(MenuItem item) {
-        Intent intent = new Intent(this, Favoriler.class);
-        startActivity(intent);
+        if(YönetimSistemi.getCurrentKullanici()!=null) {
+            Intent intent = new Intent(this, Favoriler.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
     }
     public void menudenTarifEklemeye(MenuItem item){
-        Intent intent = new Intent(this, TarifEkle.class);
-        startActivity(intent);
+        if(YönetimSistemi.getCurrentKullanici()!=null){
+            Intent intent = new Intent(this, TarifEkle.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
+
     }
     public void menudenGecmise (MenuItem item) {
-        Intent intent = new Intent(this, Gecmis.class);
-        startActivity(intent);
+        if(YönetimSistemi.getCurrentKullanici()!=null){
+            Intent intent = new Intent(this, Gecmis.class);
+            startActivity(intent);
+        }
+        else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
     }
     /* ------------- */
 

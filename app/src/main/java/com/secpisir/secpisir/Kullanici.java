@@ -11,8 +11,8 @@ import static com.secpisir.secpisir.YönetimSistemi.listeyeKullanicilariYaz;
 
 public class Kullanici {
 
-    private ArrayList<String> favoriler;
-    private ArrayList<String>  karaListe;
+    private BinarySearchTree<String> favoriler;
+    private BinarySearchTree<String>  karaListe;
     private Stack<String> gecmis= new Stack<>();
     private boolean girisYapildi = false;
     private String kullaniciAdi;
@@ -60,11 +60,11 @@ public class Kullanici {
         if (karaListe.contains(yemek))
             return false;
         Boolean check=favoriler.add(yemek);
-        /*try {
+        try {
             listeyeKullanicilariYaz();
         } catch (IOException e) {
             return false;
-        }*/
+        }
         return check;
     }
     //
@@ -96,11 +96,19 @@ public class Kullanici {
         }
         return check;
     }
+    public String getListe(AbstractList<String> liste){
+        StringBuilder sb= new StringBuilder();
+        int i=0;
+        do {
+            sb.append(liste.get(i));
+            i++;
+        }while(i<liste.size()&&sb.append("-")!=null);
+        return sb.toString();
+    }
 
-
-    private ArrayList<String> setListe(String yemekler) {
+    private BinarySearchTree<String> setListe(String yemekler) {
         //TODO String ile arama sorun olursa yemek objesi oluşturulacak
-        ArrayList<String> yemekListesi=new ArrayList<>() ;
+        BinarySearchTree<String> yemekListesi=new BinarySearchTree<>() ;
         String[] data = yemekler.split("-");
         for(int i=0;i<data.length;++i)
             yemekListesi.add(data[i]);
@@ -115,17 +123,6 @@ public class Kullanici {
     public Stack<String> getGecmis() {
         return gecmis;
     }
-
-    public String getListe(AbstractList<String> liste){
-        StringBuilder sb= new StringBuilder();
-        int i=0;
-        do {
-            sb.append(liste.get(i));
-            i++;
-        }while(i<liste.size()&&sb.append("-")!=null);
-        return sb.toString();
-    }
-
     public String getGecmis(int ignore){
         StringBuilder sb=new StringBuilder();
         Iterator<String> iter=gecmis.iterator();
@@ -138,10 +135,10 @@ public class Kullanici {
             sb.append(0);
         return sb.toString();
     }
-    public ArrayList<String> getKaraListe(){
+    public BinarySearchTree<String> getKaraListe(){
         return karaListe;
     }
-    public ArrayList<String> getFavoriListe() {
+    public BinarySearchTree<String> getFavoriListe() {
         return favoriler;
     }
 

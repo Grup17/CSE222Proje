@@ -36,21 +36,36 @@ public class YemekTarifi extends AppCompatActivity {
     }
 
     public void yemegiGecmiseEkle(View view) {
-        Kullanici k = YönetimSistemi.getKullanici();
-        k.gecmiseEkle(yemek.getIsim());
-        Intent intent = new Intent(this, MainScreen.class);
-        startActivity(intent);
+        if(YönetimSistemi.getCurrentKullanici()!=null) {
+            Kullanici k = YönetimSistemi.getKullanici();
+            //k.gecmiseEkle(yemek.getIsim());
+            Intent intent = new Intent(this, MainScreen.class);
+            startActivity(intent);
+        }else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void yemegiFavorilereEkle(View view) {
-        Kullanici k = YönetimSistemi.getKullanici();
-        k.favorilereEkle(yemek.getIsim());
-        Toast.makeText(getApplicationContext(), "Favorilere eklendi",Toast.LENGTH_LONG).show();
+        if(YönetimSistemi.getCurrentKullanici()!=null) {
+            Kullanici k = YönetimSistemi.getKullanici();
+            //k.favorilereEkle(yemek.getIsim());
+            Toast.makeText(getApplicationContext(), "Favorilere eklendi",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
     }
 
     public void yemegiKaralisteyeEkle(View view){
-        Kullanici k = YönetimSistemi.getKullanici();
-        k.karaListeyeEkle(yemek.getIsim());
-        Toast.makeText(getApplicationContext(), "Kara listeye eklendi",Toast.LENGTH_LONG).show();
+        if(YönetimSistemi.getCurrentKullanici()!=null) {
+            Kullanici k = YönetimSistemi.getKullanici();
+          //  k.karaListeyeEkle(yemek.getIsim());
+            Toast.makeText(getApplicationContext(), "Kara listeye eklendi",Toast.LENGTH_LONG).show();
+        }else{
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+            " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+            }
     }
 }

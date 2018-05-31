@@ -1,5 +1,6 @@
 package com.secpisir.secpisir;
 
+import android.content.Intent;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -11,23 +12,25 @@ import android.widget.LinearLayout;
 import java.util.ArrayList;
 
 public class Karaliste extends AppCompatActivity implements KaralisteFragment.OnFragmentInteractionListener {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_karaliste);
         //TODO: kullanıcı sınıfından Karaliste datafieldì ile işlemi yap
         YönetimSistemi yönetimSistemi=new YönetimSistemi();
-        ArrayList<String> karaliste=yönetimSistemi.getCurrentKullanici().getKaraListe();
+        BinarySearchTree<String> karaListe=yönetimSistemi.getCurrentKullanici().getKaraListe();
+        String[] karaliste = karaListe.toString().split("-");
         final Karaliste cntx = this;
         final LinearLayout linearly = findViewById(R.id.linearLayout_karaliste);
         //frame layout oluşturuldu
-        for (int i=0;i<karaliste.size();++i)
+        for (int i=0;i<karaliste.length;++i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
             flTest.setId(id);
             linearly.addView(flTest);
-            addFragment(id,karaliste.get(i));
+            addFragment(id,karaliste[i]);
         }
     }
     @Override
@@ -44,4 +47,5 @@ public class Karaliste extends AppCompatActivity implements KaralisteFragment.On
         fragmentTransaction.add(id,kara);
         fragmentTransaction.commit();
     }
+
 }
