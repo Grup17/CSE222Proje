@@ -14,8 +14,8 @@ public class KullaniciBilgileri extends AppCompatActivity {
         TextView k_soyadi = findViewById(R.id.soyad);
         TextView ad = findViewById(R.id.ad);
         TextView mail = findViewById(R.id.email);
-        String adi = YönetimSistemi.getCurrentKullanici().getIsim().split(" ")[0];
-        String soyadi = YönetimSistemi.getCurrentKullanici().getIsim().split(" ")[1];
+        String adi = YönetimSistemi.getCurrentKullanici().getIsim();
+        String soyadi = YönetimSistemi.getCurrentKullanici().getSoyad();
         Kullanici k = YönetimSistemi.getCurrentKullanici();
         k_adi.setText(k.getKullaniciAdi());
         ad.append(adi);
