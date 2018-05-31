@@ -69,13 +69,13 @@ public class YemekTarifi extends AppCompatActivity {
             //k.favorilereEkle(yemek.getIsim());
             Toast.makeText(getApplicationContext(), yemek.getIsim() +" Favorilere eklendi",Toast.LENGTH_LONG).show();
         }
+        else if(YönetimSistemi.getCurrentKullanici() == null){
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
         else if(YönetimSistemi.getCurrentKullanici().getFavoriListe().contains(yemek.getIsim())){
             Toast.makeText(getApplicationContext(), "Eklemek istediğiniz yemek"+
                     " zaten favorilerinizde mevcut.",Toast.LENGTH_SHORT).show();
-        }
-        else{
-            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
-                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -86,13 +86,13 @@ public class YemekTarifi extends AppCompatActivity {
           //  k.karaListeyeEkle(yemek.getIsim());
             Toast.makeText(getApplicationContext(), "Kara listeye eklendi",Toast.LENGTH_LONG).show();
         }
+        else if(YönetimSistemi.getCurrentKullanici() == null){
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+        }
         else if(YönetimSistemi.getCurrentKullanici().getKaraListe().contains(yemek.getIsim())){
             Toast.makeText(getApplicationContext(), "Eklemek istediğiniz yemek"+
                     " zaten kara listede mevcut.",Toast.LENGTH_SHORT).show();
         }
-        else{
-            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
-            " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
-            }
     }
 }

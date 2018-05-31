@@ -114,6 +114,11 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void anaEkrandanKullaniciyaOzele(View view){
+        if(YönetimSistemi.getCurrentKullanici() == null){
+            Toast.makeText(getApplicationContext(), "Bu özellik yalnızca kayıtlı"+
+                    " kullanıcılar içindir...",Toast.LENGTH_SHORT).show();
+            return;
+        }
         ArrayList<Yemek> oneri = YönetimSistemi.kullaniciyaOzelYemekOner(YönetimSistemi.getCurrentKullanici());
         ArrayList<Integer> oneriIDleri = new ArrayList<>(50);
         System.out.println("önerilen yemekler: " + oneri);
