@@ -11,16 +11,18 @@ public class Yemek extends Tüketilebilir implements Comparable<Yemek> {
     private String isim;
     private String hazirlanisSuresi;
     private int code;
+    private String resim;
 
     public Yemek(){
 
     }
-    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,String hazirlanis,String hazirlanisSuresi){
+    public Yemek(ArrayList<Malzeme> yeniMalzemeler, String kategori ,String hazirlanis,String hazirlanisSuresi,String resim){
 
         malzemeler = yeniMalzemeler;
         this.kategori = kategori;
         this.hazirlanis = hazirlanis;
         this.hazirlanisSuresi = hazirlanisSuresi;
+        this.resim=resim;
 
     }
 
@@ -121,5 +123,13 @@ public class Yemek extends Tüketilebilir implements Comparable<Yemek> {
     @Override
     public int compareTo(@NonNull Yemek o) {
         return isim.compareTo(o.isim);
+    }
+
+    public String getResim() {
+        return resim;
+    }
+
+    public void setResim(String resim) {
+        this.resim = resim;
     }
 }
