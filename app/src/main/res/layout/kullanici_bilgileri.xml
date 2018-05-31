@@ -28,7 +28,7 @@
         android:textColor="@android:color/black"
         android:textSize="20dp"
         android:visibility="visible"
-        tools:text="Kullanıcı Adı" />
+        android:text="Kullanıcı Adı" />
 
     <TextView
         android:id="@+id/ad"
@@ -41,7 +41,7 @@
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        tools:text="Adı: " />
+        android:text="Adı: " />
 
     <TextView
         android:id="@+id/soyad"
@@ -53,7 +53,7 @@
         android:textAlignment="textStart"
         android:textColor="@android:color/black"
         android:textSize="20dp"
-        tools:text="Soyadı: " />
+        android:text="Soyadı: " />
 
     <TextView
         android:id="@+id/email"
