@@ -36,6 +36,7 @@
             android:windowSoftInputMode="stateVisible|adjustNothing" />
         <activity android:name=".FerhatMain" />
         <activity android:name=".Gecmis" />
+        <activity android:name=".Rastgele"/>
         <activity android:name=".YemekTarifi" />
         <activity android:name=".KategorilerActivity" />
         <activity android:name=".YönetimSistemi" />
