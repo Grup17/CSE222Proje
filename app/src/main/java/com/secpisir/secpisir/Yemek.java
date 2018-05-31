@@ -36,6 +36,15 @@ public class Yemek extends Tüketilebilir implements Comparable<Yemek> {
         return malzemeler;
     }
 
+    public String getMalzemelerString()
+    {
+        StringBuilder sb = new StringBuilder();
+        sb.append("Malzemeler:"+"\n");
+        for (Malzeme malzeme:malzemeler)
+            sb.append(" "+malzeme.getIsim()+"\n");
+        return sb.toString();
+    }
+
     public String getKategori(){
         return kategori;
     }

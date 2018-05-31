@@ -49,7 +49,7 @@ public class FerhatMain extends AppCompatActivity {
         mDotLayout = findViewById(R.id.dotsLayout);
 
         SliderAdapter = new SliderAdapter(this, yemekKodlari.size());
-        SliderAdapter.setSlideDescriptions(tarifler);
+        //SliderAdapter.setSlideDescriptions(tarifler);
         SliderAdapter.setSlideHeading(yemekIsimleri);
         mSlideViewPager.setAdapter(SliderAdapter);
         //addDotindicator(0);
