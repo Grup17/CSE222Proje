@@ -42,7 +42,6 @@
         <activity android:name=".YönetimSistemi" />
         <activity android:name=".TarifBulunamadi" />
         <activity android:name=".KullaniciBilgileri" />
-        <activity android:name=".SecilenKategori"></activity>
     </application>
 
 </manifest>
