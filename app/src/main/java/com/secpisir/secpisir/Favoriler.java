@@ -19,13 +19,14 @@ public class Favoriler extends AppCompatActivity implements FavorilerFragment.On
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_favoriler);
         //TODO: kullanıcı sınıfından Karaliste datafieldì ile işlemi yap
+        denemeFavoriListesi deneme=new denemeFavoriListesi();
         final Favoriler cntx = this;
         final LinearLayout linearly = findViewById(R.id.linearLayout_favoriler);
         //frame layout oluşturuldu
         YönetimSistemi yönetimSistemi=new YönetimSistemi();
-        BinarySearchTree<String> favorilerTree= YönetimSistemi.getCurrentKullanici().getFavoriListe();
+        BinarySearchTree<String> favorilerTree=yönetimSistemi.getCurrentKullanici().getFavoriListe();
         String[] favoriler = favorilerTree.toString().split("-");
-        for (int i=0;i<favoriler.length;++i)
+        for (int i=0;i<favoriler.length&& favoriler[0]!="";++i)
         {
             FrameLayout flTest = new FrameLayout(cntx);
             int id = View.generateViewId();
