@@ -37,6 +37,18 @@ public class KategorilerActivity extends AppCompatActivity {
                 kategoridenYemekler = YönetimSistemi.kategoridenYemekIDleri("Tatlı");
                 break;
         }
+        Yemek[] siraliYemekler = new Yemek[kategoridenYemekler.size()];
+        int i = 0;
+        /* --Merge sorting -- */
+        for (Integer integer : kategoridenYemekler) {
+            siraliYemekler[i] = YönetimSistemi.getYemek(integer);
+            ++i;
+        }
+        MergeSort.sort(siraliYemekler);
+        for (int j = 0; j < kategoridenYemekler.size(); j++) {
+            kategoridenYemekler.set(j, siraliYemekler[j].getCode());
+        }
+        /* --- */
         Intent intent;
         if(kategoridenYemekler.size() != 0) {
             intent = new Intent(this, FerhatMain.class);

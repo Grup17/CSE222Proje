@@ -110,7 +110,10 @@ public class MainScreen extends AppCompatActivity {
     }
 
     public void anaEkrandanRastgeleye(View view) {
-        setContentView(R.layout.rastgele);
+        Yemek yemek = YönetimSistemi.RastgeleOner();
+        Intent intent = new Intent(this, YemekTarifi.class);
+        intent.putExtra("yemekID",yemek.getCode());
+        startActivity(intent);
     }
 
     public void anaEkrandanKullaniciyaOzele(View view){
